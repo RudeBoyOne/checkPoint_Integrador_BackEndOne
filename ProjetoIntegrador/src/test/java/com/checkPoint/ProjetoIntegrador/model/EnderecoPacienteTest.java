@@ -11,12 +11,12 @@ public class EnderecoPacienteTest {
     EnderecoPaciente enderecoPaciente;
 
     @BeforeEach
-    public void iniciaDentista(){
+    public void iniciaEnderecoPaciente(){
         enderecoPaciente = new EnderecoPaciente(1, "Rua soldado sebatião", 3568, "24567-211", "Rio de janeiro", "Rio de janeiro");
     }
 
     @Test
-    public void verificaEstanciacaoDentista(){
+    public void verificaEstanciacaoEnderecoPaciente(){
         assertEquals(1, enderecoPaciente.getIdEndereco());
         assertEquals("Rua soldado sebatião", enderecoPaciente.getRua());
         assertEquals(3568, enderecoPaciente.getNumero());
