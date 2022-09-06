@@ -9,7 +9,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class EnderecoPaciente {
     private Integer idEndereco;
     private String rua;
