@@ -12,7 +12,7 @@ public class EnderecoPacienteTest {
 
     @BeforeEach
     public void iniciaEnderecoPaciente(){
-        enderecoPaciente = new EnderecoPaciente(1, "Rua soldado sebatião", 3568, "24567-211", "Rio de janeiro", "Rio de janeiro");
+        enderecoPaciente = new EnderecoPaciente("Rua soldado sebatião", 3568, "24567-211", "Rio de janeiro", "Rio de janeiro");
     }
 
     @Test

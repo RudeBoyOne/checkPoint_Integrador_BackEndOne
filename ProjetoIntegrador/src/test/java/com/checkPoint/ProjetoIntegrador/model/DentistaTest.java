@@ -12,7 +12,7 @@ public class DentistaTest {
 
     @BeforeEach
     public void iniciaDentista(){
-        dentista = new Dentista(1, "Lorivaldo", "Silva", "D-SP: 3907");
+        dentista = new Dentista("Lorivaldo", "Silva", "D-SP: 3907");
     }
 
     @Test
