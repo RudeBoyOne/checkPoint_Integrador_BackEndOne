@@ -15,9 +15,9 @@ public class PacienteTest {
     EnderecoPaciente enderecoPaciente;
     @BeforeEach
     public void iniciaPaciente(){
-        enderecoPaciente = new EnderecoPaciente(1, "Rua Anne Frank", 3050, "84567-211", "Laguna", "Santa Catarina");
+        enderecoPaciente = new EnderecoPaciente("Rua Anne Frank", 3050, "84567-211", "Laguna", "Santa Catarina");
 
-        paciente = new Paciente(1, "Josivaldo", "Souza", enderecoPaciente, "68945644", LocalDate.now());
+        paciente = new Paciente("Josivaldo", "Souza", "68945644", LocalDate.now(), enderecoPaciente);
     }
 
     @Test
