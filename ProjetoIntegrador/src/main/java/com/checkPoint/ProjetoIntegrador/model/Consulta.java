@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -12,8 +13,18 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Consulta {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idConsulta;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idPaciente")
     private Paciente paciente;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idDentista")
     private Dentista dentista;
+
     private LocalDateTime dataHoraConsulta;
 }
