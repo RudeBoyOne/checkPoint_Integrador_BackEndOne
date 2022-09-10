@@ -12,8 +12,8 @@ public class EnderecoPacienteTest {
     @Autowired
     private IEnderecoPacienteRepository enderecoPacienteRepository;
 
-    EnderecoPaciente enderecoPaciente;
-    EnderecoPaciente enderecoPacienteSalvo;
+    private EnderecoPaciente enderecoPaciente;
+    private EnderecoPaciente enderecoPacienteSalvo;
 
     @Test
     public void criaEnderecoPaciente(){
