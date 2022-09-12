@@ -1,5 +1,7 @@
 package com.checkPoint.ProjetoIntegrador.repository;
 
-public interface IDentistaRepository {
-    //TODO
+import com.checkPoint.ProjetoIntegrador.model.Dentista;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface IDentistaRepository extends JpaRepository<Dentista, Integer> {
 }
