@@ -1,5 +1,7 @@
 package com.checkPoint.ProjetoIntegrador.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import java.util.List;
@@ -31,7 +33,6 @@ public class Paciente {
     @Column(nullable = false, length = 10)
     private String rg;
 
-    @NonNull
     private LocalDate dataAlta;
 
     @NonNull
@@ -39,7 +40,8 @@ public class Paciente {
     @JoinColumn(name = "idEndereco")
     private EnderecoPaciente enderecoPaciente;
 
-    @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "paciente")
+    @JsonIgnore
     private List<Consulta> consultas;
 
 }
