@@ -25,7 +25,7 @@ public class PacienteTest {
     public void criarPaciente(){
         this.enderecoPaciente = new EnderecoPaciente("Benjamin Constant", 243, "11040140", "Santos", "São Paulo");
         enderecoPacienteSalvo = this.iEnderecoPacienteRepository.save(enderecoPaciente);
-        this.paciente = new Paciente("Daniel", "Martins", "44444444", LocalDate.of(2022,9,9), iEnderecoPacienteRepository.findById(enderecoPacienteSalvo.getIdEndereco()).get());
+        this.paciente = new Paciente("Daniel", "Martins", "44444444", iEnderecoPacienteRepository.findById(enderecoPacienteSalvo.getIdEndereco()).get());
         pacienteSalvo = pacienteRepository.save(paciente);
         Assertions.assertNotNull(this.pacienteSalvo.getIdPaciente());
         Assertions.assertEquals(this.paciente.getNome(),this.pacienteSalvo.getNome());
@@ -39,7 +39,7 @@ public class PacienteTest {
     public void buscaPaciente(){
         this.enderecoPaciente = new EnderecoPaciente("Benjamin Constant", 243, "11040140", "Santos", "São Paulo");
         enderecoPacienteSalvo = this.iEnderecoPacienteRepository.save(enderecoPaciente);
-        this.paciente = new Paciente("Daniel", "Martins", "44444444", LocalDate.of(2022,9,9), iEnderecoPacienteRepository.findById(enderecoPacienteSalvo.getIdEndereco()).get());
+        this.paciente = new Paciente("Daniel", "Martins", "44444444", iEnderecoPacienteRepository.findById(enderecoPacienteSalvo.getIdEndereco()).get());
         pacienteSalvo = pacienteRepository.save(paciente);
         Assertions.assertTrue(this.pacienteRepository.findById(this.pacienteSalvo.getIdPaciente()).isPresent());
     }
@@ -48,7 +48,7 @@ public class PacienteTest {
     public void atualizaPaciente(){
         this.enderecoPaciente = new EnderecoPaciente("Benjamin Constant", 243, "11040140", "Santos", "São Paulo");
         enderecoPacienteSalvo = this.iEnderecoPacienteRepository.save(enderecoPaciente);
-        this.paciente = new Paciente("Daniel", "Martins", "44444444", LocalDate.of(2022,9,9), iEnderecoPacienteRepository.findById(enderecoPacienteSalvo.getIdEndereco()).get());
+        this.paciente = new Paciente("Daniel", "Martins", "44444444", iEnderecoPacienteRepository.findById(enderecoPacienteSalvo.getIdEndereco()).get());
         pacienteSalvo = pacienteRepository.save(paciente);
         this.pacienteSalvo.setNome("Lucas");
         this.pacienteSalvo.setRg("55555555");
@@ -62,7 +62,7 @@ public class PacienteTest {
     public void deletaPaciente(){
         this.enderecoPaciente = new EnderecoPaciente("Benjamin Constant", 243, "11040140", "Santos", "São Paulo");
         enderecoPacienteSalvo = this.iEnderecoPacienteRepository.save(enderecoPaciente);
-        this.paciente = new Paciente("Daniel", "Martins", "44444444", LocalDate.of(2022,9,9), iEnderecoPacienteRepository.findById(enderecoPacienteSalvo.getIdEndereco()).get());
+        this.paciente = new Paciente("Daniel", "Martins", "44444444", iEnderecoPacienteRepository.findById(enderecoPacienteSalvo.getIdEndereco()).get());
         pacienteSalvo = pacienteRepository.save(paciente);
         this.pacienteRepository.deleteById(this.pacienteSalvo.getIdPaciente());
         Assertions.assertFalse(this.pacienteRepository.findById(this.pacienteSalvo.getIdPaciente()).isPresent());

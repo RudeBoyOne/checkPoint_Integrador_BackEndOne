@@ -23,7 +23,7 @@ public class ConsultaTest {
     @Test
     public void criarConsulta(){
         EnderecoPaciente enderecoPaciente = new EnderecoPaciente("Rua embaixador valadares", 3456, "23456-211", "Rio de Janeiro", "Rio de janeiro");
-        Paciente paciente1 = new Paciente("João", "Sousa","255635271",LocalDate.of(2018, 6,24), enderecoPaciente);
+        Paciente paciente1 = new Paciente("João", "Sousa","255635271", enderecoPaciente);
         Dentista dentista = new Dentista ("Ewerton", "Lopes", "CRO-125987");
         this.consulta = new Consulta(paciente1, dentista, LocalDateTime.of(2020, 06,23,14,30));
         consultaSalvo = iConsultaRepository.save(consulta);
@@ -44,7 +44,7 @@ public class ConsultaTest {
     @Test
     public void buscarConsulta(){
         EnderecoPaciente enderecoPaciente = new EnderecoPaciente("Rua embaixador valadares", 3456, "23456-211", "Rio de Janeiro", "Rio de janeiro");
-        Paciente paciente1 = new Paciente("João", "Sousa","255635271",LocalDate.of(2018, 6,24), enderecoPaciente);
+        Paciente paciente1 = new Paciente("João", "Sousa","255635271", enderecoPaciente);
         Dentista dentista = new Dentista ("Ewerton", "Lopes", "CRO-125987");
         this.consulta = new Consulta(paciente1, dentista, LocalDateTime.of(2020, 06,23,14,30));
 
@@ -56,7 +56,7 @@ public class ConsultaTest {
     @Test
     public void atualizarConsulta(){
         EnderecoPaciente enderecoPaciente = new EnderecoPaciente("Rua embaixador valadares", 3456, "23456-211", "Rio de Janeiro", "Rio de janeiro");
-        Paciente paciente1 = new Paciente("João", "Sousa","255635271",LocalDate.of(2018, 6,24), enderecoPaciente);
+        Paciente paciente1 = new Paciente("João", "Sousa","255635271", enderecoPaciente);
         Dentista dentista = new Dentista ("Ewerton", "Lopes", "CRO-125987");
         this.consulta = new Consulta(paciente1, dentista, LocalDateTime.of(2020, 06,23,14,30));
 
@@ -69,7 +69,7 @@ public class ConsultaTest {
     @Test
     public void deletarConsulta(){
         EnderecoPaciente enderecoPaciente = new EnderecoPaciente("Rua embaixador valadares", 3456, "23456-211", "Rio de Janeiro", "Rio de janeiro");
-        Paciente paciente1 = new Paciente("João", "Sousa","255635271",LocalDate.of(2018, 6,24), enderecoPaciente);
+        Paciente paciente1 = new Paciente("João", "Sousa","255635271", enderecoPaciente);
         Dentista dentista = new Dentista ("Ewerton", "Lopes", "CRO-125987");
         this.consulta = new Consulta(paciente1, dentista, LocalDateTime.of(2020, 06,23,14,30));
         consultaSalvo = iConsultaRepository.save(consulta);

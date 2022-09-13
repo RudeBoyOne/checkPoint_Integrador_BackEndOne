@@ -1,5 +1,6 @@
 package com.checkPoint.ProjetoIntegrador.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -34,8 +35,5 @@ public class EnderecoPaciente {
     @NonNull
     @Column(nullable = false, length = 50)
     private String estado;
-
-    @OneToOne(mappedBy = "enderecoPaciente")
-    private Paciente paciente;
 
 }

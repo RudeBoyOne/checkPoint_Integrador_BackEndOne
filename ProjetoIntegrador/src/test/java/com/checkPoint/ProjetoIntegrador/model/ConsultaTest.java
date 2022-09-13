@@ -20,7 +20,7 @@ public class ConsultaTest {
     public void iniciaConsulta(){
         dentista = new Dentista("Lorivaldo", "Silva", "D-SP: 3907");
         enderecoPaciente = new EnderecoPaciente("Rua Anne Frank", 3050, "84567-211", "Laguna", "Santa Catarina");
-        paciente = new Paciente("Josivaldo", "Souza", "68945644", LocalDate.now(), enderecoPaciente);
+        paciente = new Paciente("Josivaldo", "Souza", "68945644", enderecoPaciente);
         consulta = new Consulta(paciente, dentista, LocalDateTime.now());
     }
 
