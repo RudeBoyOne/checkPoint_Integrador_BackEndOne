@@ -1,5 +1,6 @@
 package com.checkPoint.ProjetoIntegrador.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -28,6 +29,7 @@ public class Dentista {
     @Column(nullable = false, length = 10)
     private String matriculaCadastro;
 
-    @OneToMany(mappedBy = "dentista", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "dentista")
+    @JsonIgnore
     private List<Consulta> consultas;
 }
