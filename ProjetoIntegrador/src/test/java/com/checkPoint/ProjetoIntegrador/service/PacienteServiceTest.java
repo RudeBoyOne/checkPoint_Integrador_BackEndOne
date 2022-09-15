@@ -4,6 +4,7 @@ import com.checkPoint.ProjetoIntegrador.dto.PacienteDTO;
 import com.checkPoint.ProjetoIntegrador.model.EnderecoPaciente;
 import com.checkPoint.ProjetoIntegrador.model.Paciente;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,34 +14,61 @@ public class PacienteServiceTest {
 
     @Autowired
     PacienteService pacienteService;
+    EnderecoPaciente  enderecoPaciente;
+    Paciente paciente;
+    PacienteDTO pacienteDTO;
+
+    @BeforeEach
+    public void instanciaObjetosParaTestes(){
+        enderecoPaciente = new EnderecoPaciente("Benjamin Constant", 243,
+                "11040140", "Santos", "São Paulo");
+        paciente = new Paciente("Daniel", "Martins", "44444444", enderecoPaciente);
+    }
 
     @Test
     public void criarPacienteServiceTest(){
-        EnderecoPaciente  enderecoPaciente = new EnderecoPaciente("Benjamin Constant", 243,
-                "11040140", "Santos", "São Paulo");
-        Paciente paciente = new Paciente("Daniel", "Martins", "44444444", enderecoPaciente);;
-        Assertions.assertEquals("Daniel", pacienteService.criarPaciente(paciente).getNome());
-        Assertions.assertEquals("Martins", pacienteService.criarPaciente(paciente).getSobrenome());
+        pacienteDTO =  pacienteService.criarPaciente(paciente);
+        Assertions.assertEquals("Daniel", pacienteDTO.getNome());
+        Assertions.assertEquals("Martins", pacienteDTO.getSobrenome());
     }
 
     @Test
-    public void buscarPacienteById(){
-        EnderecoPaciente  enderecoPaciente = new EnderecoPaciente("Benjamin Constant", 243,
-                "11040140", "Santos", "São Paulo");
-        Paciente pacienteModel = new Paciente("Daniel", "Martins", "44444444", enderecoPaciente);
-        pacienteService.criarPaciente(pacienteModel);
-        PacienteDTO pacienteDTO = pacienteService.buscarPacienteById(1);
+    public void buscarPacienteByIdTest(){
+        pacienteService.criarPaciente(paciente);
+        pacienteDTO = pacienteService.buscarPacienteById(paciente.getIdPaciente());
         Assertions.assertNotNull(pacienteDTO);
+        Assertions.assertEquals("Daniel", pacienteDTO.getNome());
+        Assertions.assertEquals("Martins", pacienteDTO.getSobrenome());
     }
 
     @Test
-    public void deletarPacienteById(){
-        EnderecoPaciente  enderecoPaciente = new EnderecoPaciente("Benjamin Constant", 243,
-                "11040140", "Santos", "São Paulo");
-        Paciente pacienteModel = new Paciente("Daniel", "Martins", "44444444", enderecoPaciente);
-        pacienteService.criarPaciente(pacienteModel);
-        pacienteService.deletarPacienteById(pacienteModel.getIdPaciente());
-        pacienteService.buscarPacienteById(pacienteModel.getIdPaciente());
+    public void listarTodosPacientesTest(){
+        pacienteService.criarPaciente(paciente);
+        enderecoPaciente = new EnderecoPaciente("Av São Miguel", 1985,
+                "63957259", "São Paulo", "São Paulo");
+        paciente = new Paciente("Lucas", "Adrian", "7364859362", enderecoPaciente);
+        pacienteService.criarPaciente(paciente);
+        enderecoPaciente = new EnderecoPaciente("Barão de Iguape", 985,
+                "39364785", "São Paulo", "São Paulo");
+        paciente = new Paciente("Joelson", "Arruda", "9473905738", enderecoPaciente);
+        pacienteService.criarPaciente(paciente);
+        enderecoPaciente = new EnderecoPaciente("Lavapés", 245,
+                "94639572", "Santos", "São Paulo");
+        paciente = new Paciente("Milena", "Souza", "9473628946", enderecoPaciente);
+        pacienteService.criarPaciente(paciente);
+        enderecoPaciente = new EnderecoPaciente("Arraial de Santa", 756,
+                "74950735", "São Paulo", "São Paulo");
+        paciente = new Paciente("Maria", "José", "2937572173", enderecoPaciente);
+        pacienteService.criarPaciente(paciente);
+
+        Assertions.assertEquals(6, pacienteService.listarTodosPacientes().size());
+    }
+
+    @Test
+    public void deletarPacienteByIdTest(){
+        pacienteService.criarPaciente(paciente);
+        pacienteService.deletarPacienteById(paciente.getIdPaciente());
+        Assertions.assertFalse(pacienteService.existePacienteById(paciente.getIdPaciente()));
     }
 
 }

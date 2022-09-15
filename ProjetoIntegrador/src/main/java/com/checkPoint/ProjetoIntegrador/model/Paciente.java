@@ -1,13 +1,11 @@
 package com.checkPoint.ProjetoIntegrador.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
-
-import java.util.List;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Getter
@@ -40,7 +38,7 @@ public class Paciente {
     @JoinColumn(name = "idEndereco")
     private EnderecoPaciente enderecoPaciente;
 
-    @OneToMany(mappedBy = "paciente")
+    @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Consulta> consultas;
 

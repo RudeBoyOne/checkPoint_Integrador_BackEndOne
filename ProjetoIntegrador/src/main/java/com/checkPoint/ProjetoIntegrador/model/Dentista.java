@@ -29,7 +29,7 @@ public class Dentista {
     @Column(nullable = false, length = 10)
     private String matriculaCadastro;
 
-    @OneToMany(mappedBy = "dentista")
+    @OneToMany(mappedBy = "dentista", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Consulta> consultas;
 }

@@ -9,12 +9,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import javax.persistence.Entity;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @DataJpaTest
-public class ConsultaTest {
+public class ConsultaRepositoryTest {
     @Autowired
     private IConsultaRepository iConsultaRepository;
     private Consulta consulta;

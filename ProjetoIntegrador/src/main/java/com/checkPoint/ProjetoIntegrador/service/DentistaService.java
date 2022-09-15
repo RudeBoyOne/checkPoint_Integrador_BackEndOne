@@ -2,7 +2,6 @@ package com.checkPoint.ProjetoIntegrador.service;
 
 import com.checkPoint.ProjetoIntegrador.Exception.ExceptionClinicaOdontologica;
 import com.checkPoint.ProjetoIntegrador.dto.DentistaDTO;
-import com.checkPoint.ProjetoIntegrador.dto.PacienteDTO;
 import com.checkPoint.ProjetoIntegrador.model.Dentista;
 import com.checkPoint.ProjetoIntegrador.repository.IDentistaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -40,9 +39,12 @@ public class DentistaService {
         return dentistaRepository.findAll();
     }
 
-    public String deletarDentistaById(Integer idDentista) {
+    public void deletarDentistaById(Integer idDentista) {
         dentistaRepository.deleteById(idDentista);
-        return "Dentista excluído.";
+    }
+
+    public boolean existeDentistaById(Integer idDentista){
+        return dentistaRepository.existsById(idDentista);
     }
 
 }

@@ -8,6 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class PacienteService {
     @Autowired
@@ -38,6 +41,14 @@ public class PacienteService {
 
     public void deletarPacienteById(Integer idPaciente){
         pacienteRepository.deleteById(idPaciente);
+    }
+
+    public List<PacienteDTO> listarTodosPacientes(){
+        List<PacienteDTO> pacienteDTOS = new ArrayList<>();
+        for(Paciente paciente : pacienteRepository.findAll()){
+            pacienteDTOS.add(objectMapper.convertValue(paciente, PacienteDTO.class));
+        }
+        return pacienteDTOS;
     }
 
 
