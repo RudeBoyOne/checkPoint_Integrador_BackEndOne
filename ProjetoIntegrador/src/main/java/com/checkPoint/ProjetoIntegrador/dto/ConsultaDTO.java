@@ -24,7 +24,6 @@ public class ConsultaDTO {
         consultaDTO.setNomeCompletoPaciente(consulta.getPaciente().getNome()+
                 " "+consulta.getPaciente().getSobrenome());
         consultaDTO.setDataConsulta(consulta.getDataHoraConsulta());
-
         return consultaDTO;
     }
 }

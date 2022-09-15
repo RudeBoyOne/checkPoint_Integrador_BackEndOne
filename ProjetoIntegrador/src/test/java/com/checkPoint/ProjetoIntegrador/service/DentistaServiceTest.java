@@ -5,6 +5,7 @@ import com.checkPoint.ProjetoIntegrador.Exception.ExceptionClinicaOdontologica;
 import com.checkPoint.ProjetoIntegrador.dto.DentistaDTO;
 import com.checkPoint.ProjetoIntegrador.model.Dentista;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,11 +18,15 @@ public class DentistaServiceTest {
     @Autowired
     DentistaService dentistaService;
 
+    Dentista dentista;
 
+    @BeforeEach
+    public void instanciaObjetosParaTestes(){
+        dentista = new Dentista("Ewerton", "Lopes", "CRO-125987");
+    }
 
     @Test
     public void criarDentistaServiceTest() {
-        Dentista dentista = new Dentista("Ewerton", "Lopes", "CRO-125987");
         dentistaService.criarDentista(dentista);
         Assertions.assertEquals("Ewerton", dentistaService.criarDentista(dentista).getNome());
         Assertions.assertEquals("Lopes", dentistaService.criarDentista(dentista).getSobrenome());
@@ -30,15 +35,13 @@ public class DentistaServiceTest {
 
     @Test
     public void buscarDentistaById() {
-        Dentista dentista = new Dentista("Ewerton", "Lopes", "CRO-125987");
         dentistaService.criarDentista(dentista);
-        DentistaDTO dentistaDTO = dentistaService.buscarDentistaById(1);
+        DentistaDTO dentistaDTO = dentistaService.buscarDentistaById(dentista.getIdDentista());
         Assertions.assertNotNull(dentistaDTO);
     }
 
     @Test
     public void buscarTodos() {
-        dentistaService.criarDentista(new Dentista("Ewerton", "Lopes", "CRO-125987"));
         dentistaService.criarDentista(new Dentista("Lucas", "Adrian", "CRO-127963"));
         dentistaService.criarDentista(new Dentista("Everton", "Silverio", "CRO-129854"));
         dentistaService.criarDentista(new Dentista("Joao", "Souza", "CRO-123456"));
@@ -46,14 +49,13 @@ public class DentistaServiceTest {
         dentistaService.criarDentista(new Dentista("Lucas", "Ferreira", "CRO-122547"));
         dentistaService.criarDentista(new Dentista("Matheus", "Barreto", "CRO-125698"));
         List<Dentista>  listaDentista = dentistaService.buscarTodos();
-        Assertions.assertEquals(7, listaDentista.size());
+        Assertions.assertEquals(8, listaDentista.size());
     }
 
     @Test
     public void deletarDentistaById() {
-        Dentista dentista = new Dentista("Ewerton", "Lopes", "CRO-125987");
         dentistaService.criarDentista(dentista);
-        Assertions.assertEquals( "Dentista excluído.", dentistaService.deletarDentistaById(dentista.getIdDentista()));;
-
+        dentistaService.deletarDentistaById(dentista.getIdDentista());
+        Assertions.assertFalse(dentistaService.existeDentistaById(dentista.getIdDentista()));
     }
 }

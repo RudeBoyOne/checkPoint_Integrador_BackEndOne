@@ -37,23 +37,52 @@ public class ConsultaServiceTest {
         paciente = new Paciente("Daniel", "Martins", "44444444", enderecoPaciente);
         pacienteService.criarPaciente(paciente);
         dentistaService.criarDentista(dentista);
-        consulta = new Consulta(paciente, dentista, LocalDateTime.of(2018, 04, 25,14,30));
+        consulta = new Consulta(paciente, dentista, LocalDateTime.of(2018, 4, 25,14,30));
 
     }
 
     @Test
-    public void criarConsultatest(){
+    public void criarConsultaTest(){
         consultaSalvo = consultaService.criarConsulta(consulta);
         Assertions.assertEquals("Daniel Martins",consultaSalvo.getNomeCompletoPaciente());
         Assertions.assertEquals("gabriel medeiros",consultaSalvo.getNomeCompletoDentista());
     }
 
     @Test
-    public void buscarConsultaById(){
+    public void buscarConsultaByIdTest(){
         consultaService.criarConsulta(consulta);
-        consultaSalvo = consultaService.buscarCosultaById(1);
+        consultaSalvo = consultaService.buscarCosultaById(consulta.getIdConsulta());
         Assertions.assertEquals("Daniel Martins",consultaSalvo.getNomeCompletoPaciente());
         Assertions.assertEquals("gabriel medeiros",consultaSalvo.getNomeCompletoDentista());
+    }
+
+    @Test
+    public void listarTodasConsultasTest(){
+        dentista = new Dentista("Lucas", "Adrian", "CRO-127963");
+        enderecoPaciente = new EnderecoPaciente("Av São Miguel", 1985,
+                "63957259", "São Paulo", "São Paulo");
+        paciente = new Paciente("Lucas", "Adrian", "7364859362", enderecoPaciente);
+        pacienteService.criarPaciente(paciente);
+        dentistaService.criarDentista(dentista);
+        consulta = new Consulta(paciente, dentista, LocalDateTime.of(2018, 4, 25,14,30));
+        consultaService.criarConsulta(consulta);
+        dentista = new Dentista("José", "Arruda", "CRO-127963");
+        enderecoPaciente = new EnderecoPaciente("Av Celso Garcia", 3456,
+                "63953459", "São Paulo", "São Paulo");
+        paciente = new Paciente("André", "Souza", "7290484673", enderecoPaciente);
+        pacienteService.criarPaciente(paciente);
+        dentistaService.criarDentista(dentista);
+        consulta = new Consulta(paciente, dentista, LocalDateTime.of(2018, 4, 25,14,30));
+        consultaService.criarConsulta(consulta);
+        Assertions.assertEquals(4, consultaService.listarTodasConsultas().size());
+
+    }
+
+    @Test
+    public void deletarConsultaByIdTest(){
+        consultaService.criarConsulta(consulta);
+        consultaService.deletarConsultaById(consulta.getIdConsulta());
+        Assertions.assertFalse(consultaService.existeConsultaById(consulta.getIdConsulta()));
     }
 
 }
