@@ -2,6 +2,8 @@ package com.checkPoint.ProjetoIntegrador.Exception;
 
 public class ExceptionClinicaOdontologica extends RuntimeException{
 
+    private static final long serialVersionUID = 1L;
+
     public ExceptionClinicaOdontologica() {
     }
 

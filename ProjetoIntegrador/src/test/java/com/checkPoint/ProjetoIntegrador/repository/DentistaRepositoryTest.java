@@ -3,6 +3,7 @@ package com.checkPoint.ProjetoIntegrador.repository;
 
 import com.checkPoint.ProjetoIntegrador.model.Dentista;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -12,14 +13,16 @@ public class DentistaRepositoryTest {
 
     @Autowired
     private IDentistaRepository dentistaRepository;
-
     private Dentista dentista;
-
     private Dentista dentistaSalvo;
 
-    @Test
-    public void criarDentista() {
+    @BeforeEach
+    public void instaciaObjetosParaTestes(){
         this.dentista = new Dentista("Ewerton", "Lopes", "CRO-125987");
+    }
+
+    @Test
+    public void criarDentistaTest() {
         dentistaSalvo = dentistaRepository.save(dentista);
         Assertions.assertNotNull(this.dentistaSalvo.getIdDentista());
         Assertions.assertEquals(this.dentista.getNome(), this.dentistaSalvo.getNome());
@@ -28,15 +31,19 @@ public class DentistaRepositoryTest {
     }
 
     @Test
-    public void buscarDentista() {
-        this.dentista = new Dentista("Ewerton", "Lopes", "CRO-125987");
+    public void buscarDentistaTest() {
         dentistaSalvo = dentistaRepository.save(dentista);
         Assertions.assertTrue(this.dentistaRepository.findById(this.dentistaSalvo.getIdDentista()).isPresent());
     }
 
     @Test
-    public void atualizarDentista() {
-        this.dentista = new Dentista("Ewerton", "Lopes", "CRO-125987");
+    public void buscaDentistaByMatriculaCadastroTest(){
+        dentistaSalvo = dentistaRepository.save(dentista);
+        Assertions.assertTrue(this.dentistaRepository.findByMatriculaCadastro(dentistaSalvo.getMatriculaCadastro()).isPresent());
+    }
+
+    @Test
+    public void atualizarDentistaTest() {
         dentistaSalvo = dentistaRepository.save(dentista);
         this.dentistaSalvo.setNome("David");
         this.dentistaSalvo.setSobrenome("Coverdale");
@@ -49,8 +56,7 @@ public class DentistaRepositoryTest {
     }
 
     @Test
-    public void deletarDentista() {
-        this.dentista = new Dentista("Ewerton", "Lopes", "CRO-125987");
+    public void deletarDentistaTest() {
         dentistaSalvo = dentistaRepository.save(dentista);
         this.dentistaRepository.deleteById(this.dentistaSalvo.getIdDentista());
         Assertions.assertFalse(this.dentistaRepository.findById(this.dentistaSalvo.getIdDentista()).isPresent());

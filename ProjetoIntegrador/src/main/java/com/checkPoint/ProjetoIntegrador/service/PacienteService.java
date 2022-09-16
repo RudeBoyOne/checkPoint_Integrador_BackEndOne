@@ -20,27 +20,17 @@ public class PacienteService {
     PacienteDTO pacienteDTO;
 
     public PacienteDTO criarPaciente(Paciente paciente)  {
-        if(paciente == null){
-            throw new ExceptionClinicaOdontologica("Dados não informados, ou faltantes, tente novamente!");
+        boolean rgJaExiste = pacienteRepository.findByRg(paciente.getRg()).stream()
+                .anyMatch(pacienteExistente -> !pacienteExistente.equals(paciente));
+        if (rgJaExiste){
+            throw new ExceptionClinicaOdontologica("Já existe um Paciente cadastrado com este RG");
         }
-        paciente = pacienteRepository.save(paciente);
-        //objectMapper.findAndRegisterModules(); Chama os módulos reponsáveis de interpretar o LocalDate para o jackson
-        pacienteDTO =  objectMapper.convertValue(paciente, PacienteDTO.class);
-        return pacienteDTO;
+        return objectMapper.convertValue(pacienteRepository.save(paciente), PacienteDTO.class);
     }
 
     public PacienteDTO buscarPacienteById(Integer idPaciente){
-        pacienteDTO = objectMapper.convertValue(pacienteRepository.findById(idPaciente).orElseThrow(
-                ()-> new ExceptionClinicaOdontologica("Paciente não encontrado!")), PacienteDTO.class);
-        return pacienteDTO;
-    }
-
-    public boolean existePacienteById(Integer idPaciente){
-        return pacienteRepository.existsById(idPaciente);
-    }
-
-    public void deletarPacienteById(Integer idPaciente){
-        pacienteRepository.deleteById(idPaciente);
+        return pacienteRepository.findById(idPaciente).map(
+                paciente-> objectMapper.convertValue(paciente, PacienteDTO.class)).orElse(null);
     }
 
     public List<PacienteDTO> listarTodosPacientes(){
@@ -51,5 +41,13 @@ public class PacienteService {
         return pacienteDTOS;
     }
 
+    public void deletarPacienteById(Integer idPaciente){
+        pacienteRepository.deleteById(idPaciente);
+    }
+
+
+    public boolean existePacienteById(Integer idPaciente){
+        return pacienteRepository.existsById(idPaciente);
+    }
 
 }
