@@ -7,7 +7,9 @@ import com.checkPoint.ProjetoIntegrador.repository.IDentistaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,27 +20,29 @@ public class DentistaService {
 
     ObjectMapper objectMapper = new ObjectMapper();
 
-    DentistaDTO dentistaDTO;
-
+    @Transactional
     public DentistaDTO criarDentista(Dentista dentista) {
-        if(dentista == null) {
-            throw new ExceptionClinicaOdontologica("Dados não informados, ou faltantes, tente novamente!");
+        boolean matriculaJaExiste = dentistaRepository.findByMatriculaCadastro(dentista.getMatriculaCadastro())
+                .stream().anyMatch(dentistaExistente -> !dentistaExistente.equals(dentista));
+        if(matriculaJaExiste){
+            throw new ExceptionClinicaOdontologica("Já existe um Dentista cadastrado com este CFO");
         }
-        dentista = dentistaRepository.save(dentista);
-        dentistaDTO = objectMapper.convertValue(dentista, DentistaDTO.class);
-        return dentistaDTO;
+        return objectMapper.convertValue(dentistaRepository.save(dentista), DentistaDTO.class);
     }
 
     public DentistaDTO buscarDentistaById(Integer idDentista) {
-        dentistaDTO = objectMapper.convertValue(dentistaRepository.findById(idDentista).orElseThrow(
-                ()-> new ExceptionClinicaOdontologica("Dentista não encontrado!")), DentistaDTO.class);
-        return dentistaDTO;
+        return dentistaRepository.findById(idDentista).map(
+                dentista -> objectMapper.convertValue(dentista, DentistaDTO.class)).orElse(null);
     }
 
-    public List<Dentista> buscarTodos() {
-        return dentistaRepository.findAll();
+    public List<DentistaDTO> buscarTodos() {
+        List<DentistaDTO> dentistaDTOS = new ArrayList<>();
+        dentistaRepository.findAll().stream().forEach(
+                dentista -> dentistaDTOS.add(objectMapper.convertValue(dentista, DentistaDTO.class)));
+        return dentistaDTOS;
     }
 
+    @Transactional
     public void deletarDentistaById(Integer idDentista) {
         dentistaRepository.deleteById(idDentista);
     }
