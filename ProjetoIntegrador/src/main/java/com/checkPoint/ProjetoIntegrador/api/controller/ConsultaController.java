@@ -1,6 +1,6 @@
 package com.checkPoint.ProjetoIntegrador.api.controller;
 
-import com.checkPoint.ProjetoIntegrador.api.dtos.ConsultaDTO;
+import com.checkPoint.ProjetoIntegrador.api.dtos.outputs.ConsultaDTOOutput;
 import com.checkPoint.ProjetoIntegrador.domain.model.Consulta;
 import com.checkPoint.ProjetoIntegrador.domain.service.ConsultaService;
 import lombok.AllArgsConstructor;
@@ -16,12 +16,12 @@ public class ConsultaController {
     ConsultaService consultaService;
 
     @PostMapping
-    public ResponseEntity<ConsultaDTO> criar(@RequestBody Consulta consulta){
+    public ResponseEntity<ConsultaDTOOutput> criar(@RequestBody Consulta consulta){
         return ResponseEntity.status(201).body(consultaService.criarConsulta(consulta));
     }
 
     @GetMapping
-    public List<ConsultaDTO> listar(){
+    public List<ConsultaDTOOutput> listar(){
         return consultaService.listarTodasConsultas();
     }
 }

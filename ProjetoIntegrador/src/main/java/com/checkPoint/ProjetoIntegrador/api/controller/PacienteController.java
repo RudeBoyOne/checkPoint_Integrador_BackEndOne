@@ -1,6 +1,6 @@
 package com.checkPoint.ProjetoIntegrador.api.controller;
 
-import com.checkPoint.ProjetoIntegrador.api.dtos.PacienteDTO;
+import com.checkPoint.ProjetoIntegrador.api.dtos.outputs.PacienteDTOOutput;
 import com.checkPoint.ProjetoIntegrador.domain.model.Paciente;
 import com.checkPoint.ProjetoIntegrador.domain.service.PacienteService;
 import lombok.AllArgsConstructor;
@@ -17,38 +17,38 @@ public class PacienteController {
     private PacienteService pacienteService;
 
     @PostMapping
-    public ResponseEntity<PacienteDTO> criar(@Valid @RequestBody Paciente paciente){
-        PacienteDTO pacienteDTO;
+    public ResponseEntity<PacienteDTOOutput> criar(@Valid @RequestBody Paciente paciente){
+        PacienteDTOOutput pacienteDTOOutput;
         if(paciente != null){
-            pacienteDTO = pacienteService.criarPaciente(paciente);
-            return ResponseEntity.status(201).body(pacienteDTO);
+            pacienteDTOOutput = pacienteService.criarPaciente(paciente);
+            return ResponseEntity.status(201).body(pacienteDTOOutput);
         }
         return ResponseEntity.notFound().build();
     }
 
     @PutMapping("/{idPaciente}")
-    public ResponseEntity<PacienteDTO> atualizar(@Valid @PathVariable Integer idPaciente, @RequestBody Paciente paciente){
-        PacienteDTO pacienteDTO;
+    public ResponseEntity<PacienteDTOOutput> atualizar(@Valid @PathVariable Integer idPaciente, @RequestBody Paciente paciente){
+        PacienteDTOOutput pacienteDTOOutput;
         if(!pacienteService.existePacienteById(idPaciente)){
             return ResponseEntity.notFound().build();
         }
         paciente.setIdPaciente(idPaciente);
-        pacienteDTO = pacienteService.criarPaciente(paciente);
-        return ResponseEntity.ok(pacienteDTO);
+        pacienteDTOOutput = pacienteService.criarPaciente(paciente);
+        return ResponseEntity.ok(pacienteDTOOutput);
     }
 
     @GetMapping
-    public List<PacienteDTO> listar(){
+    public List<PacienteDTOOutput> listar(){
         return pacienteService.listarTodosPacientes();
     }
 
     @GetMapping("/{idPaciente}")
-    public ResponseEntity<PacienteDTO> buscarById(@PathVariable Integer idPaciente){
-        PacienteDTO pacienteDTO = pacienteService.buscarPacienteById(idPaciente);
-        if(pacienteDTO == null){
+    public ResponseEntity<PacienteDTOOutput> buscarById(@PathVariable Integer idPaciente){
+        PacienteDTOOutput pacienteDTOOutput = pacienteService.buscarPacienteById(idPaciente);
+        if(pacienteDTOOutput == null){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok().body(pacienteDTO);
+        return ResponseEntity.ok().body(pacienteDTOOutput);
     }
 
     @DeleteMapping("/{idPaciente}")

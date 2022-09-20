@@ -1,7 +1,7 @@
 package com.checkPoint.ProjetoIntegrador.service;
 
 import com.checkPoint.ProjetoIntegrador.domain.service.PacienteService;
-import com.checkPoint.ProjetoIntegrador.api.dtos.PacienteDTO;
+import com.checkPoint.ProjetoIntegrador.api.dtos.outputs.PacienteDTOOutput;
 import com.checkPoint.ProjetoIntegrador.domain.model.EnderecoPaciente;
 import com.checkPoint.ProjetoIntegrador.domain.model.Paciente;
 import org.junit.jupiter.api.Assertions;
@@ -17,7 +17,7 @@ public class PacienteServiceTest {
     PacienteService pacienteService;
     EnderecoPaciente  enderecoPaciente;
     Paciente paciente;
-    PacienteDTO pacienteDTO;
+    PacienteDTOOutput pacienteDTOOutput;
 
     @BeforeEach
     public void instanciaObjetosParaTestes(){
@@ -28,18 +28,18 @@ public class PacienteServiceTest {
 
     @Test
     public void criarPacienteServiceTest(){
-        pacienteDTO =  pacienteService.criarPaciente(paciente);
-        Assertions.assertEquals("Daniel", pacienteDTO.getNome());
-        Assertions.assertEquals("Martins", pacienteDTO.getSobrenome());
+        pacienteDTOOutput =  pacienteService.criarPaciente(paciente);
+        Assertions.assertEquals("Daniel", pacienteDTOOutput.getNome());
+        Assertions.assertEquals("Martins", pacienteDTOOutput.getSobrenome());
     }
 
     @Test
     public void buscarPacienteByIdTest(){
         pacienteService.criarPaciente(paciente);
-        pacienteDTO = pacienteService.buscarPacienteById(paciente.getIdPaciente());
-        Assertions.assertNotNull(pacienteDTO);
-        Assertions.assertEquals("Daniel", pacienteDTO.getNome());
-        Assertions.assertEquals("Martins", pacienteDTO.getSobrenome());
+        pacienteDTOOutput = pacienteService.buscarPacienteById(paciente.getIdPaciente());
+        Assertions.assertNotNull(pacienteDTOOutput);
+        Assertions.assertEquals("Daniel", pacienteDTOOutput.getNome());
+        Assertions.assertEquals("Martins", pacienteDTOOutput.getSobrenome());
     }
 
     @Test

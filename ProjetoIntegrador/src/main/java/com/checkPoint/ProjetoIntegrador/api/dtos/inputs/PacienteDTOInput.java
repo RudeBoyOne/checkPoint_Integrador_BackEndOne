@@ -1,15 +1,11 @@
-package com.checkPoint.ProjetoIntegrador.api.dtos;
+package com.checkPoint.ProjetoIntegrador.api.dtos.inputs;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
-@ToString
 @Setter
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class DentistaDTO {
+public class PacienteDTOInput {
     private String nome;
     private String sobrenome;
     private String matriculaCadastro;

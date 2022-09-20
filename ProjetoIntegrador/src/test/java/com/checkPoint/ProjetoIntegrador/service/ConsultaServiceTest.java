@@ -3,7 +3,7 @@ package com.checkPoint.ProjetoIntegrador.service;
 import com.checkPoint.ProjetoIntegrador.domain.service.ConsultaService;
 import com.checkPoint.ProjetoIntegrador.domain.service.DentistaService;
 import com.checkPoint.ProjetoIntegrador.domain.service.PacienteService;
-import com.checkPoint.ProjetoIntegrador.api.dtos.ConsultaDTO;
+import com.checkPoint.ProjetoIntegrador.api.dtos.outputs.ConsultaDTOOutput;
 import com.checkPoint.ProjetoIntegrador.domain.model.Consulta;
 import com.checkPoint.ProjetoIntegrador.domain.model.Dentista;
 import com.checkPoint.ProjetoIntegrador.domain.model.EnderecoPaciente;
@@ -29,7 +29,7 @@ public class ConsultaServiceTest {
     Dentista dentista;
     Paciente paciente;
     Consulta consulta;
-    ConsultaDTO consultaSalvo;
+    ConsultaDTOOutput consultaSalvo;
 
 
     @BeforeEach

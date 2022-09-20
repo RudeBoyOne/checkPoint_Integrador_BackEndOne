@@ -1,6 +1,6 @@
 package com.checkPoint.ProjetoIntegrador.api.controller;
 
-import com.checkPoint.ProjetoIntegrador.api.dtos.DentistaDTO;
+import com.checkPoint.ProjetoIntegrador.api.dtos.outputs.DentistaDTOOutput;
 import com.checkPoint.ProjetoIntegrador.domain.model.Dentista;
 import com.checkPoint.ProjetoIntegrador.domain.service.DentistaService;
 import lombok.AllArgsConstructor;
@@ -19,12 +19,12 @@ public class DentistaController {
     private DentistaService dentistaService;
 
     @PostMapping
-    public ResponseEntity<DentistaDTO> criar(@Valid @RequestBody Dentista dentista){
+    public ResponseEntity<DentistaDTOOutput> criar(@Valid @RequestBody Dentista dentista){
         return ResponseEntity.status(201).body(dentistaService.criarDentista(dentista));
     }
 
     @PutMapping("{idDentista}")
-    public ResponseEntity<DentistaDTO> atualizar(@Valid @PathVariable Integer idDentista, @RequestBody Dentista dentista){
+    public ResponseEntity<DentistaDTOOutput> atualizar(@Valid @PathVariable Integer idDentista, @RequestBody Dentista dentista){
         if(!dentistaService.existeDentistaById(idDentista)){
             return ResponseEntity.notFound().build();
         }
@@ -33,17 +33,17 @@ public class DentistaController {
     }
 
     @GetMapping
-    public List<DentistaDTO> listar() {
+    public List<DentistaDTOOutput> listar() {
         return  dentistaService.buscarTodos();
     }
 
     @GetMapping("{idDentista}")
-    public ResponseEntity<DentistaDTO> buscarById(@PathVariable Integer idDentista){
-        DentistaDTO dentistaDTO = dentistaService.buscarDentistaById(idDentista);
-        if (dentistaDTO == null){
+    public ResponseEntity<DentistaDTOOutput> buscarById(@PathVariable Integer idDentista){
+        DentistaDTOOutput dentistaDTOOutput = dentistaService.buscarDentistaById(idDentista);
+        if (dentistaDTOOutput == null){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok().body(dentistaDTO);
+        return ResponseEntity.ok().body(dentistaDTOOutput);
     }
 
     @DeleteMapping("{idDentista}")
