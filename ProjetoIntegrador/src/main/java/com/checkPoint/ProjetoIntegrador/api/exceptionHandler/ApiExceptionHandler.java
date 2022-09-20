@@ -21,7 +21,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @ControllerAdvice
-public class ApiExptionHandler extends ResponseEntityExceptionHandler {
+public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     private MessageSource messageSource;
 
@@ -50,7 +50,6 @@ public class ApiExptionHandler extends ResponseEntityExceptionHandler {
         problema.setStatus(status.value());
         problema.setDataHora(OffsetDateTime.now());
         problema.setTitulo(ex.getMessage());
-
         return handleExceptionInternal(ex, problema, new HttpHeaders(), status , request);
     }
 

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -47,7 +48,7 @@ public class Paciente {
 
     private LocalDate dataAlta;
 
-    @NotBlank
+    @Valid
     @NotNull
     @NonNull
     @OneToOne(cascade = CascadeType.ALL)
