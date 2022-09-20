@@ -1,4 +1,4 @@
-package com.checkPoint.ProjetoIntegrador.domain.Exception;
+package com.checkPoint.ProjetoIntegrador.domain.exception;
 
 public class ExceptionClinicaOdontologica extends RuntimeException{
 
