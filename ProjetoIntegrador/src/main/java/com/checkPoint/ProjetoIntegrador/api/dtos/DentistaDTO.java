@@ -1,4 +1,4 @@
-package com.checkPoint.ProjetoIntegrador.dto;
+package com.checkPoint.ProjetoIntegrador.api.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;

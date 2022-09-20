@@ -1,9 +1,9 @@
-package com.checkPoint.ProjetoIntegrador.service;
+package com.checkPoint.ProjetoIntegrador.domain.service;
 
-import com.checkPoint.ProjetoIntegrador.Exception.ExceptionClinicaOdontologica;
-import com.checkPoint.ProjetoIntegrador.dto.PacienteDTO;
-import com.checkPoint.ProjetoIntegrador.model.Paciente;
-import com.checkPoint.ProjetoIntegrador.repository.IPacienteRepository;
+import com.checkPoint.ProjetoIntegrador.domain.Exception.ExceptionClinicaOdontologica;
+import com.checkPoint.ProjetoIntegrador.api.dtos.PacienteDTO;
+import com.checkPoint.ProjetoIntegrador.domain.model.Paciente;
+import com.checkPoint.ProjetoIntegrador.domain.repository.IPacienteRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

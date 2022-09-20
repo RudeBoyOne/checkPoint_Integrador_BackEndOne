@@ -1,5 +1,6 @@
 package com.checkPoint.ProjetoIntegrador.model;
 
+import com.checkPoint.ProjetoIntegrador.domain.model.Dentista;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

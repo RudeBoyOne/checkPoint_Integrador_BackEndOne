@@ -1,6 +1,6 @@
-package com.checkPoint.ProjetoIntegrador.dto;
+package com.checkPoint.ProjetoIntegrador.api.dtos;
 
-import com.checkPoint.ProjetoIntegrador.model.Consulta;
+import com.checkPoint.ProjetoIntegrador.domain.model.Consulta;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 

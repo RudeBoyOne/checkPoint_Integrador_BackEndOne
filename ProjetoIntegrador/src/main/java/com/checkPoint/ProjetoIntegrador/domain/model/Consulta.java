@@ -1,4 +1,4 @@
-package com.checkPoint.ProjetoIntegrador.model;
+package com.checkPoint.ProjetoIntegrador.domain.model;
 
 import lombok.*;
 

@@ -1,8 +1,8 @@
 package com.checkPoint.ProjetoIntegrador.api.controller;
 
-import com.checkPoint.ProjetoIntegrador.dto.PacienteDTO;
-import com.checkPoint.ProjetoIntegrador.model.Paciente;
-import com.checkPoint.ProjetoIntegrador.service.PacienteService;
+import com.checkPoint.ProjetoIntegrador.api.dtos.PacienteDTO;
+import com.checkPoint.ProjetoIntegrador.domain.model.Paciente;
+import com.checkPoint.ProjetoIntegrador.domain.service.PacienteService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

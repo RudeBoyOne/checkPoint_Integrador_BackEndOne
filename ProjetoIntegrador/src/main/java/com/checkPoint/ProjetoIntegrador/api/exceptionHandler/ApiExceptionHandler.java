@@ -1,6 +1,6 @@
 package com.checkPoint.ProjetoIntegrador.api.exceptionHandler;
 
-import com.checkPoint.ProjetoIntegrador.Exception.ExceptionClinicaOdontologica;
+import com.checkPoint.ProjetoIntegrador.domain.Exception.ExceptionClinicaOdontologica;
 import lombok.AllArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;

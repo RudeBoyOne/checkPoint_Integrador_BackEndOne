@@ -1,6 +1,6 @@
-package com.checkPoint.ProjetoIntegrador.repository;
+package com.checkPoint.ProjetoIntegrador.domain.repository;
 
-import com.checkPoint.ProjetoIntegrador.model.EnderecoPaciente;
+import com.checkPoint.ProjetoIntegrador.domain.model.EnderecoPaciente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

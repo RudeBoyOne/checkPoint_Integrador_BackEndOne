@@ -1,6 +1,7 @@
 package com.checkPoint.ProjetoIntegrador.repository;
 
-import com.checkPoint.ProjetoIntegrador.model.EnderecoPaciente;
+import com.checkPoint.ProjetoIntegrador.domain.model.EnderecoPaciente;
+import com.checkPoint.ProjetoIntegrador.domain.repository.IEnderecoPacienteRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
