@@ -1,9 +1,10 @@
 package com.checkPoint.ProjetoIntegrador.repository;
 
-import com.checkPoint.ProjetoIntegrador.model.Consulta;
-import com.checkPoint.ProjetoIntegrador.model.Dentista;
-import com.checkPoint.ProjetoIntegrador.model.EnderecoPaciente;
-import com.checkPoint.ProjetoIntegrador.model.Paciente;
+import com.checkPoint.ProjetoIntegrador.domain.model.Consulta;
+import com.checkPoint.ProjetoIntegrador.domain.model.Dentista;
+import com.checkPoint.ProjetoIntegrador.domain.model.EnderecoPaciente;
+import com.checkPoint.ProjetoIntegrador.domain.model.Paciente;
+import com.checkPoint.ProjetoIntegrador.domain.repository.IConsultaRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

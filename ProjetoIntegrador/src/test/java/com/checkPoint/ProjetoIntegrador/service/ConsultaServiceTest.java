@@ -1,10 +1,13 @@
 package com.checkPoint.ProjetoIntegrador.service;
 
-import com.checkPoint.ProjetoIntegrador.dto.ConsultaDTO;
-import com.checkPoint.ProjetoIntegrador.model.Consulta;
-import com.checkPoint.ProjetoIntegrador.model.Dentista;
-import com.checkPoint.ProjetoIntegrador.model.EnderecoPaciente;
-import com.checkPoint.ProjetoIntegrador.model.Paciente;
+import com.checkPoint.ProjetoIntegrador.domain.service.ConsultaService;
+import com.checkPoint.ProjetoIntegrador.domain.service.DentistaService;
+import com.checkPoint.ProjetoIntegrador.domain.service.PacienteService;
+import com.checkPoint.ProjetoIntegrador.api.dtos.outputs.ConsultaDTOOutput;
+import com.checkPoint.ProjetoIntegrador.domain.model.Consulta;
+import com.checkPoint.ProjetoIntegrador.domain.model.Dentista;
+import com.checkPoint.ProjetoIntegrador.domain.model.EnderecoPaciente;
+import com.checkPoint.ProjetoIntegrador.domain.model.Paciente;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,7 +29,7 @@ public class ConsultaServiceTest {
     Dentista dentista;
     Paciente paciente;
     Consulta consulta;
-    ConsultaDTO consultaSalvo;
+    ConsultaDTOOutput consultaSalvo;
 
 
     @BeforeEach
@@ -43,17 +46,17 @@ public class ConsultaServiceTest {
 
     @Test
     public void criarConsultaTest(){
-        consultaSalvo = consultaService.criarConsulta(consulta);
-        Assertions.assertEquals("Daniel Martins",consultaSalvo.getNomeCompletoPaciente());
-        Assertions.assertEquals("gabriel medeiros",consultaSalvo.getNomeCompletoDentista());
+        consulta = consultaService.criarConsulta(consulta);
+        Assertions.assertEquals("Daniel",consulta.getPaciente().getNome());
+        Assertions.assertEquals("gabriel",consulta.getDentista().getNome());
     }
 
     @Test
     public void buscarConsultaByIdTest(){
         consultaService.criarConsulta(consulta);
-        consultaSalvo = consultaService.buscarCosultaById(consulta.getIdConsulta());
-        Assertions.assertEquals("Daniel Martins",consultaSalvo.getNomeCompletoPaciente());
-        Assertions.assertEquals("gabriel medeiros",consultaSalvo.getNomeCompletoDentista());
+        consulta = consultaService.buscarCosultaById(consulta.getIdConsulta());
+        Assertions.assertEquals("Daniel",consulta.getPaciente().getNome());
+        Assertions.assertEquals("gabriel",consulta.getDentista().getNome());
     }
 
     @Test

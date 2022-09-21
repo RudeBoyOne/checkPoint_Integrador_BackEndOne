@@ -1,9 +1,9 @@
 package com.checkPoint.ProjetoIntegrador.service;
 
 
-import com.checkPoint.ProjetoIntegrador.Exception.ExceptionClinicaOdontologica;
-import com.checkPoint.ProjetoIntegrador.dto.DentistaDTO;
-import com.checkPoint.ProjetoIntegrador.model.Dentista;
+import com.checkPoint.ProjetoIntegrador.domain.service.DentistaService;
+import com.checkPoint.ProjetoIntegrador.api.dtos.outputs.DentistaDTOOutput;
+import com.checkPoint.ProjetoIntegrador.domain.model.Dentista;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,8 +36,8 @@ public class DentistaServiceTest {
     @Test
     public void buscarDentistaById() {
         dentistaService.criarDentista(dentista);
-        DentistaDTO dentistaDTO = dentistaService.buscarDentistaById(dentista.getIdDentista());
-        Assertions.assertNotNull(dentistaDTO);
+        Dentista dentistaBuscado = dentistaService.buscarDentistaById(dentista.getIdDentista());
+        Assertions.assertNotNull(dentistaBuscado);
     }
 
     @Test

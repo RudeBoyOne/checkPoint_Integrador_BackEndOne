@@ -1,6 +1,6 @@
-package com.checkPoint.ProjetoIntegrador.repository;
+package com.checkPoint.ProjetoIntegrador.domain.repository;
 
-import com.checkPoint.ProjetoIntegrador.model.Dentista;
+import com.checkPoint.ProjetoIntegrador.domain.model.Dentista;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

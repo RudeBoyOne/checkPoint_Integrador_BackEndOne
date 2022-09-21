@@ -1,8 +1,11 @@
 package com.checkPoint.ProjetoIntegrador.api.controller;
 
-import com.checkPoint.ProjetoIntegrador.dto.PacienteDTO;
-import com.checkPoint.ProjetoIntegrador.model.Paciente;
-import com.checkPoint.ProjetoIntegrador.service.PacienteService;
+import com.checkPoint.ProjetoIntegrador.api.assembler.PacienteAssembler;
+import com.checkPoint.ProjetoIntegrador.api.dtos.inputs.DentistaDTOInput;
+import com.checkPoint.ProjetoIntegrador.api.dtos.inputs.PacienteDTOInput;
+import com.checkPoint.ProjetoIntegrador.api.dtos.outputs.PacienteDTOOutput;
+import com.checkPoint.ProjetoIntegrador.domain.model.Paciente;
+import com.checkPoint.ProjetoIntegrador.domain.service.PacienteService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,40 +18,32 @@ import java.util.List;
 @RequestMapping("/pacientes")
 public class PacienteController {
     private PacienteService pacienteService;
+    private PacienteAssembler pacienteAssembler;
 
     @PostMapping
-    public ResponseEntity<PacienteDTO> criar(@Valid @RequestBody Paciente paciente){
-        PacienteDTO pacienteDTO;
-        if(paciente != null){
-            pacienteDTO = pacienteService.criarPaciente(paciente);
-            return ResponseEntity.status(201).body(pacienteDTO);
-        }
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<PacienteDTOOutput> criar(@Valid @RequestBody PacienteDTOInput paciente){
+        return ResponseEntity.status(201).body(pacienteAssembler
+                .toDTOOutput(pacienteService.criarPaciente(pacienteAssembler.toEntity(paciente))));
     }
 
     @PutMapping("/{idPaciente}")
-    public ResponseEntity<PacienteDTO> atualizar(@Valid @PathVariable Integer idPaciente, @RequestBody Paciente paciente){
-        PacienteDTO pacienteDTO;
+    public ResponseEntity<PacienteDTOOutput> atualizar(@Valid @PathVariable Integer idPaciente, @RequestBody PacienteDTOInput paciente){
         if(!pacienteService.existePacienteById(idPaciente)){
             return ResponseEntity.notFound().build();
         }
-        paciente.setIdPaciente(idPaciente);
-        pacienteDTO = pacienteService.criarPaciente(paciente);
-        return ResponseEntity.ok(pacienteDTO);
+        Paciente pacienteEntity = pacienteAssembler.toEntity(paciente);
+        pacienteEntity.setIdPaciente(idPaciente);
+        return ResponseEntity.ok(pacienteAssembler.toDTOOutput(pacienteService.criarPaciente(pacienteEntity)));
     }
 
     @GetMapping
-    public List<PacienteDTO> listar(){
-        return pacienteService.listarTodosPacientes();
+    public List<PacienteDTOOutput> listar(){
+        return pacienteAssembler.toCollectionDTOOutput(pacienteService.listarTodosPacientes());
     }
 
     @GetMapping("/{idPaciente}")
-    public ResponseEntity<PacienteDTO> buscarById(@PathVariable Integer idPaciente){
-        PacienteDTO pacienteDTO = pacienteService.buscarPacienteById(idPaciente);
-        if(pacienteDTO == null){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok().body(pacienteDTO);
+    public ResponseEntity<PacienteDTOOutput> buscarById(@PathVariable Integer idPaciente){
+        return ResponseEntity.ok(pacienteAssembler.toDTOOutput(pacienteService.buscarPacienteById(idPaciente)));
     }
 
     @DeleteMapping("/{idPaciente}")
