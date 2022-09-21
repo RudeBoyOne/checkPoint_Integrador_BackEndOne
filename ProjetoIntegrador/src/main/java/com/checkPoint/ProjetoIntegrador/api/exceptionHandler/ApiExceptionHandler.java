@@ -1,6 +1,7 @@
 package com.checkPoint.ProjetoIntegrador.api.exceptionHandler;
 
-import com.checkPoint.ProjetoIntegrador.domain.exception.ExceptionClinicaOdontologica;
+import com.checkPoint.ProjetoIntegrador.domain.exception.ClinicaOdontologicaException;
+import com.checkPoint.ProjetoIntegrador.domain.exception.RecursoNaoEncontradoException;
 import lombok.AllArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -43,14 +44,24 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, problema ,headers, status, request);
     }
 
-    @ExceptionHandler(ExceptionClinicaOdontologica.class)
-    public ResponseEntity<Object> handleClinicaOdontologica(ExceptionClinicaOdontologica ex, WebRequest request){
+    @ExceptionHandler(ClinicaOdontologicaException.class)
+    public ResponseEntity<Object> handleClinicaOdontologica(ClinicaOdontologicaException ex, WebRequest request){
         HttpStatus status = HttpStatus.BAD_REQUEST;
         Problema problema = new Problema();
         problema.setStatus(status.value());
         problema.setDataHora(OffsetDateTime.now());
         problema.setTitulo(ex.getMessage());
         return handleExceptionInternal(ex, problema, new HttpHeaders(), status , request);
+    }
+
+    @ExceptionHandler(RecursoNaoEncontradoException.class)
+    public ResponseEntity<Object> handleRecursoNaoEncontrado(RecursoNaoEncontradoException ex, WebRequest request){
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        Problema problema = new Problema();
+        problema.setStatus(status.value());
+        problema.setDataHora(OffsetDateTime.now());
+        problema.setTitulo(ex.getMessage());
+        return handleExceptionInternal(ex, problema, new HttpHeaders(), status, request);
     }
 
 }

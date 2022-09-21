@@ -1,12 +1,26 @@
 package com.checkPoint.ProjetoIntegrador.api.dtos.inputs;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
-@Setter
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 @Getter
+@Setter
 public class PacienteDTOInput {
+
+    @NotBlank
     private String nome;
+
+    @NotBlank
     private String sobrenome;
-    private String matriculaCadastro;
+
+    @NotNull
+    private String rg;
+
+    @Valid
+    @NotNull
+    private EnderecoPacienteDTOInput enderecoPaciente;
 }

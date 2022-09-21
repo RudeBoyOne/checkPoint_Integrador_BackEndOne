@@ -1,5 +1,8 @@
 package com.checkPoint.ProjetoIntegrador.api.controller;
 
+import com.checkPoint.ProjetoIntegrador.api.assembler.PacienteAssembler;
+import com.checkPoint.ProjetoIntegrador.api.dtos.inputs.DentistaDTOInput;
+import com.checkPoint.ProjetoIntegrador.api.dtos.inputs.PacienteDTOInput;
 import com.checkPoint.ProjetoIntegrador.api.dtos.outputs.PacienteDTOOutput;
 import com.checkPoint.ProjetoIntegrador.domain.model.Paciente;
 import com.checkPoint.ProjetoIntegrador.domain.service.PacienteService;
@@ -15,40 +18,32 @@ import java.util.List;
 @RequestMapping("/pacientes")
 public class PacienteController {
     private PacienteService pacienteService;
+    private PacienteAssembler pacienteAssembler;
 
     @PostMapping
-    public ResponseEntity<PacienteDTOOutput> criar(@Valid @RequestBody Paciente paciente){
-        PacienteDTOOutput pacienteDTOOutput;
-        if(paciente != null){
-            pacienteDTOOutput = pacienteService.criarPaciente(paciente);
-            return ResponseEntity.status(201).body(pacienteDTOOutput);
-        }
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<PacienteDTOOutput> criar(@Valid @RequestBody PacienteDTOInput paciente){
+        return ResponseEntity.status(201).body(pacienteAssembler
+                .toDTOOutput(pacienteService.criarPaciente(pacienteAssembler.toEntity(paciente))));
     }
 
     @PutMapping("/{idPaciente}")
-    public ResponseEntity<PacienteDTOOutput> atualizar(@Valid @PathVariable Integer idPaciente, @RequestBody Paciente paciente){
-        PacienteDTOOutput pacienteDTOOutput;
+    public ResponseEntity<PacienteDTOOutput> atualizar(@Valid @PathVariable Integer idPaciente, @RequestBody PacienteDTOInput paciente){
         if(!pacienteService.existePacienteById(idPaciente)){
             return ResponseEntity.notFound().build();
         }
-        paciente.setIdPaciente(idPaciente);
-        pacienteDTOOutput = pacienteService.criarPaciente(paciente);
-        return ResponseEntity.ok(pacienteDTOOutput);
+        Paciente pacienteEntity = pacienteAssembler.toEntity(paciente);
+        pacienteEntity.setIdPaciente(idPaciente);
+        return ResponseEntity.ok(pacienteAssembler.toDTOOutput(pacienteService.criarPaciente(pacienteEntity)));
     }
 
     @GetMapping
     public List<PacienteDTOOutput> listar(){
-        return pacienteService.listarTodosPacientes();
+        return pacienteAssembler.toCollectionDTOOutput(pacienteService.listarTodosPacientes());
     }
 
     @GetMapping("/{idPaciente}")
     public ResponseEntity<PacienteDTOOutput> buscarById(@PathVariable Integer idPaciente){
-        PacienteDTOOutput pacienteDTOOutput = pacienteService.buscarPacienteById(idPaciente);
-        if(pacienteDTOOutput == null){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok().body(pacienteDTOOutput);
+        return ResponseEntity.ok(pacienteAssembler.toDTOOutput(pacienteService.buscarPacienteById(idPaciente)));
     }
 
     @DeleteMapping("/{idPaciente}")

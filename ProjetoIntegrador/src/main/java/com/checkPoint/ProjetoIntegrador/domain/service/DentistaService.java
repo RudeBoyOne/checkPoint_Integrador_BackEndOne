@@ -1,6 +1,7 @@
 package com.checkPoint.ProjetoIntegrador.domain.service;
 
-import com.checkPoint.ProjetoIntegrador.domain.exception.ExceptionClinicaOdontologica;
+import com.checkPoint.ProjetoIntegrador.domain.exception.ClinicaOdontologicaException;
+import com.checkPoint.ProjetoIntegrador.domain.exception.RecursoNaoEncontradoException;
 import com.checkPoint.ProjetoIntegrador.domain.model.Dentista;
 import com.checkPoint.ProjetoIntegrador.domain.repository.IDentistaRepository;
 import lombok.AllArgsConstructor;
@@ -22,13 +23,14 @@ public class DentistaService {
         boolean matriculaJaExiste = dentistaRepository.findByMatriculaCadastro(dentista.getMatriculaCadastro())
                 .stream().anyMatch(dentistaExistente -> !dentistaExistente.equals(dentista));
         if(matriculaJaExiste){
-            throw new ExceptionClinicaOdontologica("Já existe um Dentista cadastrado com este CFO");
+            throw new ClinicaOdontologicaException("Já existe um Dentista cadastrado com este CFO");
         }
         return dentistaRepository.save(dentista);
     }
 
     public Dentista buscarDentistaById(Integer idDentista) {
-        return dentistaRepository.findById(idDentista).orElse(null);
+        return dentistaRepository.findById(idDentista).orElseThrow(
+                () -> new RecursoNaoEncontradoException("Dentista não encontrado!"));
     }
 
     public List<Dentista> buscarTodos() {

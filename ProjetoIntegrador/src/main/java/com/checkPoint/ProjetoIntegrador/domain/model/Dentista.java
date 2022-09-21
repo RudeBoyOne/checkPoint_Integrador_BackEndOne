@@ -44,7 +44,7 @@ public class Dentista {
     @Column(nullable = false, length = 10)
     private String matriculaCadastro;
 
-    @OneToMany(mappedBy = "dentista", fetch = FetchType.LAZY)
     @JsonIgnore
+    @OneToMany(mappedBy = "dentista", cascade = CascadeType.ALL)
     private List<Consulta> consultas;
 }

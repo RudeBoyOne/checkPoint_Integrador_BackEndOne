@@ -55,8 +55,8 @@ public class Paciente {
     @JoinColumn(name = "idEndereco")
     private EnderecoPaciente enderecoPaciente;
 
-    @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)
     @JsonIgnore
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
     private List<Consulta> consultas;
 
 }

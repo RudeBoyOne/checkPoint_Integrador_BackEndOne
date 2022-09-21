@@ -3,12 +3,19 @@ package com.checkPoint.ProjetoIntegrador.api.dtos.inputs;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
-@Setter
 @Getter
+@Setter
 public class ConsultaDTOInput {
-    private Integer idPaciente;
-    private Integer idDentista;
+
+    @NotNull
+    private Integer paciente;
+
+    @NotNull
+    private Integer dentista;
+
+    @NotNull
     private LocalDateTime dataHoraConsulta;
 }

@@ -1,13 +1,19 @@
 package com.checkPoint.ProjetoIntegrador.api.dtos.inputs;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Setter
+import javax.validation.constraints.NotBlank;
+
 @Getter
+@Setter
 public class DentistaDTOInput {
+
+    @NotBlank
     private String nome;
+
+    @NotBlank
     private String sobrenome;
-    private String rg;
-    private EnderecoPacienteDTOInput enderecoPacienteDTOInput;
+
+    @NotBlank
+    private String matriculaCadastro;
 }

@@ -1,5 +1,8 @@
 package com.checkPoint.ProjetoIntegrador.api.controller;
 
+import com.checkPoint.ProjetoIntegrador.api.assembler.DentistaAssembler;
+import com.checkPoint.ProjetoIntegrador.api.dtos.inputs.DentistaDTOInput;
+import com.checkPoint.ProjetoIntegrador.api.dtos.inputs.PacienteDTOInput;
 import com.checkPoint.ProjetoIntegrador.api.dtos.outputs.DentistaDTOOutput;
 import com.checkPoint.ProjetoIntegrador.domain.model.Dentista;
 import com.checkPoint.ProjetoIntegrador.domain.service.DentistaService;
@@ -17,33 +20,32 @@ import java.util.List;
 public class DentistaController {
 
     private DentistaService dentistaService;
+    private DentistaAssembler dentistaAssembler;
 
     @PostMapping
-    public ResponseEntity<DentistaDTOOutput> criar(@Valid @RequestBody Dentista dentista){
-        return ResponseEntity.status(201).body(dentistaService.criarDentista(dentista));
+    public ResponseEntity<DentistaDTOOutput> criar(@Valid @RequestBody DentistaDTOInput dentista){
+        return ResponseEntity.status(201).body(dentistaAssembler
+                .toDentistaDTOOutput(dentistaService.criarDentista(dentistaAssembler.toEntity(dentista))));
     }
 
     @PutMapping("{idDentista}")
-    public ResponseEntity<DentistaDTOOutput> atualizar(@Valid @PathVariable Integer idDentista, @RequestBody Dentista dentista){
+    public ResponseEntity<DentistaDTOOutput> atualizar(@Valid @PathVariable Integer idDentista, @RequestBody DentistaDTOInput dentista){
         if(!dentistaService.existeDentistaById(idDentista)){
             return ResponseEntity.notFound().build();
         }
-        dentista.setIdDentista(idDentista);
-        return ResponseEntity.ok(dentistaService.criarDentista(dentista));
+        Dentista dentistaEntity = dentistaAssembler.toEntity(dentista);
+        dentistaEntity.setIdDentista(idDentista);
+        return ResponseEntity.ok(dentistaAssembler.toDentistaDTOOutput(dentistaService.criarDentista(dentistaEntity)));
     }
 
     @GetMapping
     public List<DentistaDTOOutput> listar() {
-        return  dentistaService.buscarTodos();
+        return dentistaAssembler.toCollectionOutput(dentistaService.buscarTodos());
     }
 
     @GetMapping("{idDentista}")
     public ResponseEntity<DentistaDTOOutput> buscarById(@PathVariable Integer idDentista){
-        DentistaDTOOutput dentistaDTOOutput = dentistaService.buscarDentistaById(idDentista);
-        if (dentistaDTOOutput == null){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok().body(dentistaDTOOutput);
+        return ResponseEntity.ok(dentistaAssembler.toDentistaDTOOutput(dentistaService.buscarDentistaById(idDentista)));
     }
 
     @DeleteMapping("{idDentista}")

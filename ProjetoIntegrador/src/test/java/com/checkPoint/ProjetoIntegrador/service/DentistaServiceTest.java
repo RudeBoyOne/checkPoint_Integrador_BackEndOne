@@ -36,8 +36,8 @@ public class DentistaServiceTest {
     @Test
     public void buscarDentistaById() {
         dentistaService.criarDentista(dentista);
-        DentistaDTOOutput dentistaDTOOutput = dentistaService.buscarDentistaById(dentista.getIdDentista());
-        Assertions.assertNotNull(dentistaDTOOutput);
+        Dentista dentistaBuscado = dentistaService.buscarDentistaById(dentista.getIdDentista());
+        Assertions.assertNotNull(dentistaBuscado);
     }
 
     @Test

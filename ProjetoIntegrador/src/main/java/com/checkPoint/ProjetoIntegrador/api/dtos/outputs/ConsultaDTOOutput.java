@@ -1,15 +1,15 @@
 package com.checkPoint.ProjetoIntegrador.api.dtos.outputs;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Setter
 @Getter
+@Setter
 public class ConsultaDTOOutput {
     private Integer idConsulta;
-    private PacienteDTOOutput pacienteDTOOutput;
-    private DentistaDTOOutput dentistaDTOOutput;
+    private PacienteDTOOutput paciente;
+    private DentistaDTOOutput dentista;
     private LocalDateTime dataHoraConsulta;
 }

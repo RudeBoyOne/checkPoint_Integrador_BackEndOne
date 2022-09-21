@@ -28,7 +28,7 @@ public class PacienteServiceTest {
 
     @Test
     public void criarPacienteServiceTest(){
-        pacienteDTOOutput =  pacienteService.criarPaciente(paciente);
+        paciente =  pacienteService.criarPaciente(paciente);
         Assertions.assertEquals("Daniel", pacienteDTOOutput.getNome());
         Assertions.assertEquals("Martins", pacienteDTOOutput.getSobrenome());
     }
@@ -36,7 +36,7 @@ public class PacienteServiceTest {
     @Test
     public void buscarPacienteByIdTest(){
         pacienteService.criarPaciente(paciente);
-        pacienteDTOOutput = pacienteService.buscarPacienteById(paciente.getIdPaciente());
+        paciente = pacienteService.buscarPacienteById(paciente.getIdPaciente());
         Assertions.assertNotNull(pacienteDTOOutput);
         Assertions.assertEquals("Daniel", pacienteDTOOutput.getNome());
         Assertions.assertEquals("Martins", pacienteDTOOutput.getSobrenome());

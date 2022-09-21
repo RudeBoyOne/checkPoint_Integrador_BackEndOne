@@ -46,17 +46,17 @@ public class ConsultaServiceTest {
 
     @Test
     public void criarConsultaTest(){
-        consultaSalvo = consultaService.criarConsulta(consulta);
-        Assertions.assertEquals("Daniel Martins",consultaSalvo.getNomeCompletoPaciente());
-        Assertions.assertEquals("gabriel medeiros",consultaSalvo.getNomeCompletoDentista());
+        consulta = consultaService.criarConsulta(consulta);
+        Assertions.assertEquals("Daniel",consulta.getPaciente().getNome());
+        Assertions.assertEquals("gabriel",consulta.getDentista().getNome());
     }
 
     @Test
     public void buscarConsultaByIdTest(){
         consultaService.criarConsulta(consulta);
-        consultaSalvo = consultaService.buscarCosultaById(consulta.getIdConsulta());
-        Assertions.assertEquals("Daniel Martins",consultaSalvo.getNomeCompletoPaciente());
-        Assertions.assertEquals("gabriel medeiros",consultaSalvo.getNomeCompletoDentista());
+        consulta = consultaService.buscarCosultaById(consulta.getIdConsulta());
+        Assertions.assertEquals("Daniel",consulta.getPaciente().getNome());
+        Assertions.assertEquals("gabriel",consulta.getDentista().getNome());
     }
 
     @Test

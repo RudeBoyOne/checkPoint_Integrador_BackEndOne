@@ -1,6 +1,7 @@
 package com.checkPoint.ProjetoIntegrador.domain.service;
 
-import com.checkPoint.ProjetoIntegrador.domain.exception.ExceptionClinicaOdontologica;
+import com.checkPoint.ProjetoIntegrador.domain.exception.ClinicaOdontologicaException;
+import com.checkPoint.ProjetoIntegrador.domain.exception.RecursoNaoEncontradoException;
 import com.checkPoint.ProjetoIntegrador.domain.model.Consulta;
 import com.checkPoint.ProjetoIntegrador.domain.repository.IConsultaRepository;
 import lombok.AllArgsConstructor;
@@ -13,26 +14,22 @@ import java.util.List;
 @Service
 public class ConsultaService {
     IConsultaRepository consultaRepository;
-    PacienteService pacienteService;
-    DentistaService dentistaService;
 
 
     @Transactional
     public Consulta criarConsulta(Consulta consulta){
         boolean consultaJaExistente = consultaRepository.findBydataHoraConsulta(consulta.getDataHoraConsulta())
                 .stream().anyMatch(consultaExistente ->
-                        !consultaExistente.getDataHoraConsulta().equals(consulta.getDataHoraConsulta()));
+                        !consultaExistente.equals(consulta));
         if(consultaJaExistente){
-            throw new ExceptionClinicaOdontologica("Já existe uma consulta agendada neste dia e horário!");
+            throw new ClinicaOdontologicaException("Já existe uma consulta agendada neste dia e horário!");
         }
-
-        consulta.setPaciente(pacienteService.buscarPacienteById(consulta.getPaciente().getIdPaciente()));
-        consulta.setDentista(dentistaService.buscarDentistaById(consulta.getDentista().getIdDentista()));
         return consultaRepository.save(consulta);
     }
 
     public Consulta buscarCosultaById(Integer idConsulta){
-        return consultaRepository.findById(idConsulta).orElse(null);
+        return consultaRepository.findById(idConsulta).orElseThrow(
+                () -> new RecursoNaoEncontradoException("Consulta não encontrada!"));
     }
 
     public List<Consulta> listarTodasConsultas(){
@@ -43,6 +40,7 @@ public class ConsultaService {
         return consultaRepository.existsById(idConsulta);
     }
 
+    @Transactional
     public void deletarConsultaById(Integer idConsulta){
         consultaRepository.deleteById(idConsulta);
     }
