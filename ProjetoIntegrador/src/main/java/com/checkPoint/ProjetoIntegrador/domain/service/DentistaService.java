@@ -15,8 +15,7 @@ import java.util.List;
 @Service
 public class DentistaService {
 
-    @Autowired
-    IDentistaRepository dentistaRepository;
+    private IDentistaRepository dentistaRepository;
 
     @Transactional
     public Dentista criarDentista(Dentista dentista) {

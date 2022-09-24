@@ -13,8 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Service
 public class ConsultaService {
-    IConsultaRepository consultaRepository;
-
+    private IConsultaRepository consultaRepository;
 
     @Transactional
     public Consulta criarConsulta(Consulta consulta){

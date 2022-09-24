@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class PacienteService {
 
-    IPacienteRepository pacienteRepository;
+    private IPacienteRepository pacienteRepository;
 
     @Transactional
     public Paciente criarPaciente(Paciente paciente)  {
