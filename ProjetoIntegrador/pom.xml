@@ -12,7 +12,7 @@
 	<artifactId>ProjetoIntegrador</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ProjetoIntegrador</name>
-	<description>avaliacao CTD BackEndI</description>
+	<description>Projeto Integrador CTD BackEndI</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
