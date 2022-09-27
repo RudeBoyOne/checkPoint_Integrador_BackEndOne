@@ -3,10 +3,8 @@ package com.checkPoint.ProjetoIntegrador.domain.service;
 import com.checkPoint.ProjetoIntegrador.domain.exception.ClinicaOdontologicaException;
 import com.checkPoint.ProjetoIntegrador.domain.exception.RecursoNaoEncontradoException;
 import com.checkPoint.ProjetoIntegrador.domain.model.Paciente;
-import com.checkPoint.ProjetoIntegrador.domain.repository.IPacienteRepository;
+import com.checkPoint.ProjetoIntegrador.domain.dataloader.repository.IPacienteRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

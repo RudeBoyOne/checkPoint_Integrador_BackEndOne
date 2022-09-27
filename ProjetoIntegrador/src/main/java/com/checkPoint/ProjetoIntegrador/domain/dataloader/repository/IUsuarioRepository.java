@@ -1,4 +1,4 @@
-package com.checkPoint.ProjetoIntegrador.domain.repository;
+package com.checkPoint.ProjetoIntegrador.domain.dataloader.repository;
 
 import com.checkPoint.ProjetoIntegrador.domain.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,6 +9,6 @@ import java.util.Optional;
 
 @Repository
 @Transactional
-public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
+public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
     Optional<Usuario> findByLogin(String login);
 }

@@ -2,7 +2,7 @@ package com.checkPoint.ProjetoIntegrador.domain.dataloader;
 
 import com.checkPoint.ProjetoIntegrador.domain.model.Usuario;
 import com.checkPoint.ProjetoIntegrador.domain.model.UsuarioRoles;
-import com.checkPoint.ProjetoIntegrador.domain.repository.UsuarioRepository;
+import com.checkPoint.ProjetoIntegrador.domain.dataloader.repository.IUsuarioRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataLoader implements ApplicationRunner {
 
-    private UsuarioRepository usuarioRepository;
+    private IUsuarioRepository IUsuarioRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -25,9 +25,9 @@ public class DataLoader implements ApplicationRunner {
         Usuario usuario2 = new Usuario("lucasVidaDeBoa", password2, UsuarioRoles.ROLE_ADMIN);
         Usuario usuario3 = new Usuario("user", password3, UsuarioRoles.ROLE_USER);
         Usuario usuario4 = new Usuario("admin", password3, UsuarioRoles.ROLE_ADMIN);
-        usuarioRepository.save(usuario);
-        usuarioRepository.save(usuario2);
-        usuarioRepository.save(usuario3);
-        usuarioRepository.save(usuario4);
+        IUsuarioRepository.save(usuario);
+        IUsuarioRepository.save(usuario2);
+        IUsuarioRepository.save(usuario3);
+        IUsuarioRepository.save(usuario4);
     }
 }

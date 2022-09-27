@@ -2,7 +2,7 @@ package com.checkPoint.ProjetoIntegrador.repository;
 
 
 import com.checkPoint.ProjetoIntegrador.domain.model.Dentista;
-import com.checkPoint.ProjetoIntegrador.domain.repository.IDentistaRepository;
+import com.checkPoint.ProjetoIntegrador.domain.dataloader.repository.IDentistaRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
