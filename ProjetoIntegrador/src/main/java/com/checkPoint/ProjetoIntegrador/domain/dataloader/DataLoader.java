@@ -2,7 +2,7 @@ package com.checkPoint.ProjetoIntegrador.domain.dataloader;
 
 import com.checkPoint.ProjetoIntegrador.domain.model.Usuario;
 import com.checkPoint.ProjetoIntegrador.domain.model.UsuarioRoles;
-import com.checkPoint.ProjetoIntegrador.domain.dataloader.repository.IUsuarioRepository;
+import com.checkPoint.ProjetoIntegrador.domain.repository.IUsuarioRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

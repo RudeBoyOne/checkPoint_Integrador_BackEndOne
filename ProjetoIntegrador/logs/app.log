@@ -1,58 +1,27 @@
-2022-09-26 21:01:42.368  INFO 15136 --- [main] c.c.P.ProjetoIntegradorApplication       : Starting ProjetoIntegradorApplication using Java 17.0.3.1 on DESKTOP-S9C3B41 with PID 15136 (D:\Users\lucas\Documents\Cursos\Certified Tech Developer Parttime\5_bimestre\trabalhoIntegrador\checkPoint_Integrador_BackEndOne\ProjetoIntegrador\target\classes started by lucas in D:\users\lucas\documents\cursos\Certified Tech Developer Parttime\5_bimestre\trabalhoIntegrador\checkPoint_Integrador_BackEndOne\ProjetoIntegrador)
-2022-09-26 21:01:42.377  INFO 15136 --- [main] c.c.P.ProjetoIntegradorApplication       : No active profile set, falling back to 1 default profile: "default"
-2022-09-26 21:01:46.066  INFO 15136 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-09-26 21:01:46.413  INFO 15136 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 315 ms. Found 5 JPA repository interfaces.
-2022-09-26 21:01:49.314  INFO 15136 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2022-09-26 21:01:49.350  INFO 15136 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2022-09-26 21:01:49.351  INFO 15136 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-09-26 21:01:49.846  INFO 15136 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2022-09-26 21:01:49.848  INFO 15136 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 7216 ms
-2022-09-26 21:01:50.551  INFO 15136 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-09-26 21:01:50.796  INFO 15136 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-09-26 21:01:51.479  INFO 15136 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-09-26 21:01:51.915  INFO 15136 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-09-26 21:01:52.745  INFO 15136 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-09-26 21:01:52.809  INFO 15136 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2022-09-26 21:01:55.138  INFO 15136 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-09-26 21:01:55.161  INFO 15136 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-09-26 21:01:58.873  WARN 15136 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-09-26 21:01:59.632  INFO 15136 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@37196d53, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@40105b39, org.springframework.security.web.context.SecurityContextPersistenceFilter@3aa63b53, org.springframework.security.web.header.HeaderWriterFilter@59c00010, org.springframework.security.web.authentication.logout.LogoutFilter@4d93e5bf, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7f9dbe11, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@6fd2acf5, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@72a61e61, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@177302d6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6d035815, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@282aea3c, org.springframework.security.web.session.SessionManagementFilter@563ab6d5, org.springframework.security.web.access.ExceptionTranslationFilter@2dcbf825, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3369e2ce]
-2022-09-26 21:02:01.335  INFO 15136 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2022-09-26 21:02:01.368  INFO 15136 --- [main] c.c.P.ProjetoIntegradorApplication       : Started ProjetoIntegradorApplication in 20.307 seconds (JVM running for 21.995)
-2022-09-26 21:02:49.764  INFO 15136 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2022-09-26 21:02:49.765  INFO 15136 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2022-09-26 21:02:49.771  INFO 15136 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
-2022-09-26 21:02:51.273  WARN 15136 --- [http-nio-8080-exec-2] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [150] milliseconds.
-2022-09-26 21:02:51.421  INFO 15136 --- [http-nio-8080-exec-3] c.c.P.api.controller.UsuarioController   : Realizado Login
-2022-09-26 21:03:37.302  INFO 15136 --- [http-nio-8080-exec-4] c.c.P.api.controller.DentistaController  : POST Dentista - Realizado com sucesso
-2022-09-26 21:04:04.459  INFO 15136 --- [http-nio-8080-exec-5] c.c.P.api.controller.DentistaController  : GET Dentista - Lista de Dentistas
-2022-09-26 21:04:39.386  INFO 15136 --- [http-nio-8080-exec-6] c.c.P.api.controller.DentistaController  : PUT Dentista - Dentista nao encontrado
-2022-09-26 21:04:57.453  INFO 15136 --- [http-nio-8080-exec-7] c.c.P.api.controller.DentistaController  : PUT Dentista - Alterado com sucesso
-2022-09-26 21:05:11.254  INFO 15136 --- [http-nio-8080-exec-8] c.c.P.api.controller.DentistaController  : GET Dentista - Lista de Dentistas
-2022-09-26 21:05:23.145  INFO 15136 --- [http-nio-8080-exec-9] c.c.P.api.controller.DentistaController  : GET Dentista - Busca de dentista por ID 3
-2022-09-26 21:05:42.182  INFO 15136 --- [http-nio-8080-exec-10] c.c.P.api.controller.DentistaController  : GET Dentista - Busca de dentista por ID 1
-2022-09-26 21:07:57.336  INFO 15136 --- [http-nio-8080-exec-3] c.c.P.api.controller.DentistaController  : DELETE Dentista - ID nao encontrado 2
-2022-09-26 21:08:09.774  INFO 15136 --- [http-nio-8080-exec-4] c.c.P.api.controller.DentistaController  : DELETE Dentista - Realizado com sucesso para ID 1
-2022-09-26 21:08:33.271  INFO 15136 --- [http-nio-8080-exec-5] c.c.P.api.controller.PacienteController  : POST Paciente - Realizado com sucesso
-2022-09-26 21:08:40.502  INFO 15136 --- [http-nio-8080-exec-6] c.c.P.api.controller.PacienteController  : GET Paciente - Listagem de pacientes realizada
-2022-09-26 21:08:53.170  INFO 15136 --- [http-nio-8080-exec-7] c.c.P.api.controller.PacienteController  : GET Paciente - Busca de paciente por ID 2
-2022-09-26 21:09:05.487  INFO 15136 --- [http-nio-8080-exec-8] c.c.P.api.controller.PacienteController  : GET Paciente - Busca de paciente por ID 1
-2022-09-26 21:09:42.008  INFO 15136 --- [http-nio-8080-exec-9] c.c.P.api.controller.PacienteController  : PUT Paciente - Alterado com sucesso ID 1
-2022-09-26 21:09:54.825  INFO 15136 --- [http-nio-8080-exec-10] c.c.P.api.controller.PacienteController  : GET Paciente - Listagem de pacientes realizada
-2022-09-26 21:10:04.726  INFO 15136 --- [http-nio-8080-exec-1] c.c.P.api.controller.PacienteController  : DELETE Paciente - Registro nao encontrado ID 2
-2022-09-26 21:10:17.771  INFO 15136 --- [http-nio-8080-exec-2] c.c.P.api.controller.PacienteController  : DELETE Paciente - Realizado com sucesso para id 1
-2022-09-26 21:10:32.687  INFO 15136 --- [http-nio-8080-exec-3] c.c.P.api.controller.DentistaController  : POST Dentista - Realizado com sucesso
-2022-09-26 21:10:36.015  INFO 15136 --- [http-nio-8080-exec-4] c.c.P.api.controller.PacienteController  : POST Paciente - Realizado com sucesso
-2022-09-26 21:10:53.683  INFO 15136 --- [http-nio-8080-exec-5] c.c.P.api.controller.ConsultaController  : POST Consulta - Realizado com sucesso
-2022-09-26 21:11:06.258  INFO 15136 --- [http-nio-8080-exec-6] c.c.P.api.controller.ConsultaController  : GET Consulta - Lista de consultas realizada
-2022-09-26 21:11:14.864  INFO 15136 --- [http-nio-8080-exec-7] c.c.P.api.controller.ConsultaController  : GET Consulta - Busca comsulta por ID 2
-2022-09-26 21:11:33.299  INFO 15136 --- [http-nio-8080-exec-8] c.c.P.api.controller.ConsultaController  : GET Consulta - Busca comsulta por ID 1
-2022-09-26 21:12:02.049  INFO 15136 --- [http-nio-8080-exec-9] c.c.P.api.controller.ConsultaController  : PUT Consulta - Consulta nao encontrada 3
-2022-09-26 21:12:19.056  INFO 15136 --- [http-nio-8080-exec-10] c.c.P.api.controller.ConsultaController  : PUT Consulta - Alteracao realizada com sucesso ID 1
-2022-09-26 21:12:25.915  INFO 15136 --- [http-nio-8080-exec-1] c.c.P.api.controller.ConsultaController  : GET Consulta - Lista de consultas realizada
-2022-09-26 21:12:47.458  INFO 15136 --- [http-nio-8080-exec-2] c.c.P.api.controller.ConsultaController  : DELETE Consulta - Registro não encontrado ID 2
-2022-09-26 21:13:08.315  INFO 15136 --- [http-nio-8080-exec-3] c.c.P.api.controller.ConsultaController  : DELETE Consulta - Realizado com sucesso para ID 1
-2022-09-26 21:20:17.603  INFO 15136 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2022-09-26 21:20:17.605  INFO 15136 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2022-09-26 21:20:17.821  INFO 15136 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2022-09-26 21:20:17.836  INFO 15136 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-09-28 15:50:05.718  INFO 12768 --- [main] c.c.P.ProjetoIntegradorApplication       : Starting ProjetoIntegradorApplication using Java 17.0.3.1 on DESKTOP-S9C3B41 with PID 12768 (D:\Users\lucas\Documents\Cursos\Certified Tech Developer Parttime\5_bimestre\trabalhoIntegrador\checkPoint_Integrador_BackEndOne\ProjetoIntegrador\target\classes started by lucas in D:\users\lucas\documents\cursos\Certified Tech Developer Parttime\5_bimestre\trabalhoIntegrador\checkPoint_Integrador_BackEndOne\ProjetoIntegrador)
+2022-09-28 15:50:05.741  INFO 12768 --- [main] c.c.P.ProjetoIntegradorApplication       : No active profile set, falling back to 1 default profile: "default"
+2022-09-28 15:50:08.828  INFO 12768 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-09-28 15:50:09.124  INFO 12768 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 265 ms. Found 5 JPA repository interfaces.
+2022-09-28 15:50:11.200  INFO 12768 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-09-28 15:50:11.231  INFO 12768 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-09-28 15:50:11.232  INFO 12768 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-09-28 15:50:11.633  INFO 12768 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-09-28 15:50:11.634  INFO 12768 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5715 ms
+2022-09-28 15:50:12.138  INFO 12768 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-28 15:50:12.334  INFO 12768 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-09-28 15:50:13.001  INFO 12768 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-28 15:50:13.401  INFO 12768 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-09-28 15:50:14.016  INFO 12768 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-09-28 15:50:14.062  INFO 12768 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2022-09-28 15:50:16.133  INFO 12768 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-28 15:50:16.150  INFO 12768 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-09-28 15:50:18.216  WARN 12768 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-09-28 15:50:18.688  INFO 12768 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7ab3f194, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@613a608e, org.springframework.security.web.context.SecurityContextPersistenceFilter@4e481512, org.springframework.security.web.header.HeaderWriterFilter@5ef7ae2f, org.springframework.security.web.authentication.logout.LogoutFilter@7c0a6f62, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@478cc5f1, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@1477d4e6, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@37b1218, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4b552b13, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5570dc21, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@575cfec1, org.springframework.security.web.session.SessionManagementFilter@b5bddfe, org.springframework.security.web.access.ExceptionTranslationFilter@32f45e15, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4603c412]
+2022-09-28 15:50:22.142  INFO 12768 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-09-28 15:50:22.175  INFO 12768 --- [main] c.c.P.ProjetoIntegradorApplication       : Started ProjetoIntegradorApplication in 17.796 seconds (JVM running for 19.335)
+2022-09-28 15:51:13.425  INFO 12768 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-09-28 15:51:13.426  INFO 12768 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-09-28 15:51:13.430  INFO 12768 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2022-09-28 15:51:13.696  WARN 12768 --- [http-nio-8080-exec-2] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [173] milliseconds.
+2022-09-28 15:51:37.303  INFO 12768 --- [http-nio-8080-exec-5] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 1739 ms
+2022-09-28 15:52:44.191  INFO 12768 --- [http-nio-8080-exec-9] c.c.P.api.controller.PacienteController  : GET Paciente - Listagem de pacientes realizada
