@@ -21,7 +21,6 @@ public class EnderecoPacienteRepositoryTest {
         this.enderecoPaciente = new EnderecoPaciente("Barão de Iguape", 985, "01507000", "São Paulo", "São Paulo");
         this.enderecoPacienteSalvo = this.enderecoPacienteRepository.save(this.enderecoPaciente);
         Assertions.assertNotNull(this.enderecoPacienteSalvo.getIdEndereco());
-        /*Assertions.assertEquals(1,this.enderecoPacienteSalvo.getIdEndereco());*/
         Assertions.assertEquals(this.enderecoPaciente.getRua(), this.enderecoPacienteSalvo.getRua());
         Assertions.assertEquals(this.enderecoPaciente.getNumero(), this.enderecoPacienteSalvo.getNumero());
         Assertions.assertEquals(this.enderecoPaciente.getCep(), this.enderecoPacienteSalvo.getCep());

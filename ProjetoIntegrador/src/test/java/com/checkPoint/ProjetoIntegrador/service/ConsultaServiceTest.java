@@ -1,22 +1,23 @@
 package com.checkPoint.ProjetoIntegrador.service;
 
-import com.checkPoint.ProjetoIntegrador.domain.service.ConsultaService;
-import com.checkPoint.ProjetoIntegrador.domain.service.DentistaService;
-import com.checkPoint.ProjetoIntegrador.domain.service.PacienteService;
-import com.checkPoint.ProjetoIntegrador.api.dtos.outputs.ConsultaDTOOutput;
 import com.checkPoint.ProjetoIntegrador.domain.model.Consulta;
 import com.checkPoint.ProjetoIntegrador.domain.model.Dentista;
 import com.checkPoint.ProjetoIntegrador.domain.model.EnderecoPaciente;
 import com.checkPoint.ProjetoIntegrador.domain.model.Paciente;
+import com.checkPoint.ProjetoIntegrador.domain.service.ConsultaService;
+import com.checkPoint.ProjetoIntegrador.domain.service.DentistaService;
+import com.checkPoint.ProjetoIntegrador.domain.service.PacienteService;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
 
 @SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ConsultaServiceTest {
     @Autowired
     ConsultaService consultaService;
@@ -29,10 +30,9 @@ public class ConsultaServiceTest {
     Dentista dentista;
     Paciente paciente;
     Consulta consulta;
-    ConsultaDTOOutput consultaSalvo;
 
 
-    @BeforeEach
+    @BeforeAll
     public void criarObjetos(){
         enderecoPaciente = new EnderecoPaciente("Benjamin Constant", 243,
                 "11040140", "Santos", "São Paulo");
@@ -61,23 +61,23 @@ public class ConsultaServiceTest {
 
     @Test
     public void listarTodasConsultasTest(){
-        dentista = new Dentista("Lucas", "Adrian", "CRO-127963");
+        dentista = new Dentista("Lucas", "Adrian", "CRO-782364");
         enderecoPaciente = new EnderecoPaciente("Av São Miguel", 1985,
                 "63957259", "São Paulo", "São Paulo");
-        paciente = new Paciente("Lucas", "Adrian", "7364859362", enderecoPaciente);
+        paciente = new Paciente("Lucas", "Adrian", "6370753417", enderecoPaciente);
         pacienteService.criarPaciente(paciente);
         dentistaService.criarDentista(dentista);
-        consulta = new Consulta(paciente, dentista, LocalDateTime.of(2018, 4, 25,14,30));
+        consulta = new Consulta(paciente, dentista, LocalDateTime.of(2018, 4, 26,14,30));
         consultaService.criarConsulta(consulta);
-        dentista = new Dentista("José", "Arruda", "CRO-127963");
+        dentista = new Dentista("José", "Arruda", "CRO-023495");
         enderecoPaciente = new EnderecoPaciente("Av Celso Garcia", 3456,
                 "63953459", "São Paulo", "São Paulo");
-        paciente = new Paciente("André", "Souza", "7290484673", enderecoPaciente);
+        paciente = new Paciente("André", "Souza", "9355870247", enderecoPaciente);
         pacienteService.criarPaciente(paciente);
         dentistaService.criarDentista(dentista);
-        consulta = new Consulta(paciente, dentista, LocalDateTime.of(2018, 4, 25,14,30));
+        consulta = new Consulta(paciente, dentista, LocalDateTime.of(2018, 4, 27,14,30));
         consultaService.criarConsulta(consulta);
-        Assertions.assertEquals(4, consultaService.listarTodasConsultas().size());
+        Assertions.assertEquals(3, consultaService.listarTodasConsultas().size());
 
     }
 

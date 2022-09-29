@@ -4,47 +4,46 @@ import com.checkPoint.ProjetoIntegrador.domain.service.PacienteService;
 import com.checkPoint.ProjetoIntegrador.api.dtos.outputs.PacienteDTOOutput;
 import com.checkPoint.ProjetoIntegrador.domain.model.EnderecoPaciente;
 import com.checkPoint.ProjetoIntegrador.domain.model.Paciente;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.FixMethodOrder;
+import org.junit.jupiter.api.*;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PacienteServiceTest {
 
     @Autowired
     PacienteService pacienteService;
     EnderecoPaciente  enderecoPaciente;
     Paciente paciente;
-    PacienteDTOOutput pacienteDTOOutput;
 
-    @BeforeEach
-    public void instanciaObjetosParaTestes(){
+    @BeforeAll
+    public void instanciaObjetosParaTests(){
         enderecoPaciente = new EnderecoPaciente("Benjamin Constant", 243,
                 "11040140", "Santos", "São Paulo");
         paciente = new Paciente("Daniel", "Martins", "44444444", enderecoPaciente);
-    }
-
-    @Test
-    public void criarPacienteServiceTest(){
         paciente =  pacienteService.criarPaciente(paciente);
-        Assertions.assertEquals("Daniel", pacienteDTOOutput.getNome());
-        Assertions.assertEquals("Martins", pacienteDTOOutput.getSobrenome());
     }
 
     @Test
-    public void buscarPacienteByIdTest(){
-        pacienteService.criarPaciente(paciente);
-        paciente = pacienteService.buscarPacienteById(paciente.getIdPaciente());
-        Assertions.assertNotNull(pacienteDTOOutput);
-        Assertions.assertEquals("Daniel", pacienteDTOOutput.getNome());
-        Assertions.assertEquals("Martins", pacienteDTOOutput.getSobrenome());
+    public void createPatientServiceTest(){
+        Assertions.assertEquals("Daniel", paciente.getNome());
+        Assertions.assertEquals("Martins", paciente.getSobrenome());
     }
 
     @Test
-    public void listarTodosPacientesTest(){
-        pacienteService.criarPaciente(paciente);
+    public void searchForPatientByIdTest(){
+        Paciente pacienteBuscado = pacienteService.buscarPacienteById(paciente.getIdPaciente());
+        Assertions.assertNotNull(pacienteBuscado);
+        Assertions.assertEquals("Daniel", pacienteBuscado.getNome());
+        Assertions.assertEquals("Martins", pacienteBuscado.getSobrenome());
+    }
+
+    @Test
+    public void listAllTestPatientsTest(){
         enderecoPaciente = new EnderecoPaciente("Av São Miguel", 1985,
                 "63957259", "São Paulo", "São Paulo");
         paciente = new Paciente("Lucas", "Adrian", "7364859362", enderecoPaciente);
@@ -62,11 +61,11 @@ public class PacienteServiceTest {
         paciente = new Paciente("Maria", "José", "2937572173", enderecoPaciente);
         pacienteService.criarPaciente(paciente);
 
-        Assertions.assertEquals(6, pacienteService.listarTodosPacientes().size());
+        Assertions.assertEquals(5, pacienteService.listarTodosPacientes().size());
     }
 
     @Test
-    public void deletarPacienteByIdTest(){
+    public void deletePatientByIdTest(){
         pacienteService.criarPaciente(paciente);
         pacienteService.deletarPacienteById(paciente.getIdPaciente());
         Assertions.assertFalse(pacienteService.existePacienteById(paciente.getIdPaciente()));

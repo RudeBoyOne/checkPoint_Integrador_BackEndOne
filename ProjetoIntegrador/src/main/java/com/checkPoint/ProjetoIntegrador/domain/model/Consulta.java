@@ -19,12 +19,12 @@ public class Consulta {
     private Integer idConsulta;
 
     @NonNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "idPaciente")
     private Paciente paciente;
 
     @NonNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "idDentista")
     private Dentista dentista;
 
