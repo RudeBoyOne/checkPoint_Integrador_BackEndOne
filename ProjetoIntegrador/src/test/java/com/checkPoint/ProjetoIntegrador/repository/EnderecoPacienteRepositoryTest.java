@@ -1,7 +1,7 @@
 package com.checkPoint.ProjetoIntegrador.repository;
 
 import com.checkPoint.ProjetoIntegrador.domain.model.EnderecoPaciente;
-import com.checkPoint.ProjetoIntegrador.domain.dataloader.repository.IEnderecoPacienteRepository;
+import com.checkPoint.ProjetoIntegrador.domain.repository.IEnderecoPacienteRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,6 @@ public class EnderecoPacienteRepositoryTest {
         this.enderecoPaciente = new EnderecoPaciente("Barão de Iguape", 985, "01507000", "São Paulo", "São Paulo");
         this.enderecoPacienteSalvo = this.enderecoPacienteRepository.save(this.enderecoPaciente);
         Assertions.assertNotNull(this.enderecoPacienteSalvo.getIdEndereco());
-        /*Assertions.assertEquals(1,this.enderecoPacienteSalvo.getIdEndereco());*/
         Assertions.assertEquals(this.enderecoPaciente.getRua(), this.enderecoPacienteSalvo.getRua());
         Assertions.assertEquals(this.enderecoPaciente.getNumero(), this.enderecoPacienteSalvo.getNumero());
         Assertions.assertEquals(this.enderecoPaciente.getCep(), this.enderecoPacienteSalvo.getCep());
