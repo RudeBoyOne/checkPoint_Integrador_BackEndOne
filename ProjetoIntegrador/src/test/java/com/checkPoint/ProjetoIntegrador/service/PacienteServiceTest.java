@@ -38,13 +38,13 @@ public class PacienteServiceTest {
     }
 
     @Test
-    public void createPatientServiceTest(){
+    public void aCreatePatientServiceTest(){
         Assertions.assertEquals("Daniel", paciente.getNome());
         Assertions.assertEquals("Martins", paciente.getSobrenome());
     }
 
     @Test
-    public void searchForPatientByIdTest(){
+    public void bSearchForPatientByIdTest(){
         Paciente pacienteBuscado = pacienteService.buscarPacienteById(paciente.getIdPaciente());
         Assertions.assertNotNull(pacienteBuscado);
         Assertions.assertEquals("Daniel", pacienteBuscado.getNome());
@@ -52,7 +52,7 @@ public class PacienteServiceTest {
     }
 
     @Test
-    public void listAllTestPatientsTest(){
+    public void cListAllTestPatientsTest(){
         enderecoPaciente = new EnderecoPaciente("Av São Miguel", 1985,
                 "63957259", "São Paulo", "São Paulo");
         paciente = new Paciente("Lucas", "Adrian", "7364859362", enderecoPaciente);
@@ -70,7 +70,7 @@ public class PacienteServiceTest {
         paciente = new Paciente("Maria", "José", "2937572173", enderecoPaciente);
         pacienteService.criarPaciente(paciente);
 
-        Assertions.assertEquals(6, pacienteService.listarTodosPacientes().size());
+        Assertions.assertEquals(7, pacienteService.listarTodosPacientes().size());
     }
 
     @Test
