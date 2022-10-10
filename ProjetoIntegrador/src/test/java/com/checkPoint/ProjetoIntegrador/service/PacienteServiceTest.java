@@ -70,7 +70,7 @@ public class PacienteServiceTest {
         paciente = new Paciente("Maria", "José", "2937572173", enderecoPaciente);
         pacienteService.criarPaciente(paciente);
 
-        Assertions.assertEquals(7, pacienteService.listarTodosPacientes().size());
+        Assertions.assertEquals(10, pacienteService.listarTodosPacientes().size());
     }
 
     @Test
