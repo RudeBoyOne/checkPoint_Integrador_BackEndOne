@@ -10,6 +10,8 @@ import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Random;
+
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -20,11 +22,16 @@ public class PacienteServiceTest {
     EnderecoPaciente  enderecoPaciente;
     Paciente paciente;
 
-    @BeforeAll
+    Random random = new Random();
+
+    Long cep;
+
+    @BeforeEach
     public void instanciaObjetosParaTests(){
+        cep = random.nextLong(1000000000);
         enderecoPaciente = new EnderecoPaciente("Benjamin Constant", 243,
                 "11040140", "Santos", "São Paulo");
-        paciente = new Paciente("Daniel", "Martins", "44444444", enderecoPaciente);
+        paciente = new Paciente("Daniel", "Martins", cep.toString(),  enderecoPaciente);
         paciente =  pacienteService.criarPaciente(paciente);
     }
 
@@ -61,7 +68,7 @@ public class PacienteServiceTest {
         paciente = new Paciente("Maria", "José", "2937572173", enderecoPaciente);
         pacienteService.criarPaciente(paciente);
 
-        Assertions.assertEquals(5, pacienteService.listarTodosPacientes().size());
+        Assertions.assertEquals(6, pacienteService.listarTodosPacientes().size());
     }
 
     @Test

@@ -52,7 +52,7 @@ public class DentistaServiceTest {
         dentistaService.criarDentista(new Dentista("Lucas", "Ferreira", "CRO-567890"));
         dentistaService.criarDentista(new Dentista("Matheus", "Barreto", "CRO-678901"));
         List<Dentista>  listaDentista = dentistaService.buscarTodos();
-        Assertions.assertEquals(6, listaDentista.size());
+        Assertions.assertEquals(9, listaDentista.size());
     }
 
     @Test
