@@ -1,16 +1,15 @@
 package com.checkPoint.ProjetoIntegrador.testsDeIntegracao;
 
+import com.checkPoint.ProjetoIntegrador.api.assembler.ConsultaAssembler;
 import com.checkPoint.ProjetoIntegrador.api.dtos.inputs.ConsultaDTOInput;
-import com.checkPoint.ProjetoIntegrador.api.dtos.inputs.DentistaDTOInput;
-import com.checkPoint.ProjetoIntegrador.api.dtos.inputs.EnderecoPacienteDTOInput;
-import com.checkPoint.ProjetoIntegrador.api.dtos.inputs.PacienteDTOInput;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import org.junit.Ignore;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,24 +27,24 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc(addFilters = false)
-@Suite.SuiteClasses({PacienteIntegracao.class, DentistaIntegracao.class})
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ConsultaIntegracao {
 
+    //Para executar este teste corretamente por favor executar a calsse SuiteDeTestes
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    ConsultaAssembler consultaAssembler;
+
     @Test
-    public void criarUmaConsultaTest() throws Exception {
-        ConsultaDTOInput consultaDTOInput = new ConsultaDTOInput(2, 1, LocalDateTime.now());
-
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        objectMapper.findAndRegisterModules();
-
-        consultaDTOInput = objectMapper.convertValue(consultaDTOInput, ConsultaDTOInput.class);
+    public void aCriarUmaConsultaTest() throws Exception {
+        ConsultaDTOInput consultaDTOInput = new ConsultaDTOInput(2, 2, LocalDateTime.now());
 
         ObjectWriter writer = new ObjectMapper()
+                .registerModule(new JavaTimeModule())
                 .configure(SerializationFeature.WRAP_ROOT_VALUE, false)
+                .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
                 .writer();
 
         String payloadJson = writer.writeValueAsString(consultaDTOInput);
@@ -60,17 +59,13 @@ public class ConsultaIntegracao {
     }
 
     @Test
-    public void atualizaUmaConsultaTest() throws Exception {
-        ConsultaDTOInput consultaDTOInput = new ConsultaDTOInput(2, 1, LocalDateTime.of(2022, 10, 28, 14, 30));
-
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        objectMapper.findAndRegisterModules();
-
-        consultaDTOInput = objectMapper.convertValue(consultaDTOInput, ConsultaDTOInput.class);
+    public void bAtualizaUmaConsultaTest() throws Exception {
+        ConsultaDTOInput consultaDTOInput = new ConsultaDTOInput(2, 2, LocalDateTime.of(2022, 10, 28, 14, 30));
 
         ObjectWriter writer = new ObjectMapper()
+                .registerModule(new JavaTimeModule())
                 .configure(SerializationFeature.WRAP_ROOT_VALUE, false)
+                .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
                 .writer();
 
         String payloadJson = writer.writeValueAsString(consultaDTOInput);
@@ -85,7 +80,7 @@ public class ConsultaIntegracao {
     }
 
     @Test
-    public void buscarTodasConsultasTest() throws Exception {
+    public void cBuscarTodasConsultasTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/dentistas")
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
@@ -94,14 +89,14 @@ public class ConsultaIntegracao {
 
 
     @Test
-    public void buscarConsultaByIdTest() throws Exception {
+    public void dBuscarConsultaByIdTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/consultas/{idConsulta}", 1))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
-    public void deletarConsultaByIdTest() throws Exception {
+    public void eDeletarConsultaByIdTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.delete("/consultas/{idConsulta}", 1))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isNoContent());

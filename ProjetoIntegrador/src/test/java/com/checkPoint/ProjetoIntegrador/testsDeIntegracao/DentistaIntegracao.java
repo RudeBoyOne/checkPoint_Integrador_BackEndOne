@@ -5,9 +5,10 @@ import com.checkPoint.ProjetoIntegrador.api.dtos.inputs.DentistaDTOInput;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import org.junit.Ignore;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,14 +24,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc(addFilters = false)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DentistaIntegracao {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    @Ignore
-    public void criarUmDentistaTest() throws Exception {
+    public void aCriarUmDentistaTest() throws Exception {
         DentistaDTOInput dentistaDTOInput = new DentistaDTOInput("Lucas", "Ferreira", "JGH-29384");
 
         ObjectWriter writer = new ObjectMapper()
@@ -49,8 +50,7 @@ public class DentistaIntegracao {
     }
 
     @Test
-    public void atualizaUmDentistaTest() throws Exception {
-        criarUmDentistaTest();
+    public void bAtualizaUmDentistaTest() throws Exception {
         DentistaDTOInput dentistaDTOInput = new DentistaDTOInput("Marcelo", "de Nobrega", "JGH-29384");
 
 
@@ -70,7 +70,7 @@ public class DentistaIntegracao {
     }
 
     @Test
-    public void buscarTodosPacientesTest() throws Exception {
+    public void cBuscarTodosPacientesTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/dentistas")
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
@@ -79,16 +79,21 @@ public class DentistaIntegracao {
 
 
     @Test
-    public void buscarDentistaByIdTest() throws Exception {
+    public void dBuscarDentistaByIdTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/dentistas/{idDentista}", 1))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
-    public void deletarDentistaByIdTest() throws Exception {
+    public void eDeletarDentistaByIdTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.delete("/dentistas/{idDentista}", 1))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isNoContent());
+    }
+
+    @Test
+    public void fCriaDentistaParaConsulta() throws Exception{
+        this.aCriarUmDentistaTest();
     }
 }

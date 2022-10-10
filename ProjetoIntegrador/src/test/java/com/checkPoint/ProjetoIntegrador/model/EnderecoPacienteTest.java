@@ -18,7 +18,6 @@ public class EnderecoPacienteTest {
 
     @Test
     public void verificaEstanciacaoEnderecoPaciente(){
-        assertEquals(1, enderecoPaciente.getIdEndereco());
         assertEquals("Rua soldado sebatião", enderecoPaciente.getRua());
         assertEquals(3568, enderecoPaciente.getNumero());
         assertEquals("24567-211", enderecoPaciente.getCep());

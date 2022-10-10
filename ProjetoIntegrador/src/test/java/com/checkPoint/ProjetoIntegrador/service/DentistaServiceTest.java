@@ -1,13 +1,13 @@
 package com.checkPoint.ProjetoIntegrador.service;
 
 
-import com.checkPoint.ProjetoIntegrador.domain.service.DentistaService;
-import com.checkPoint.ProjetoIntegrador.api.dtos.outputs.DentistaDTOOutput;
 import com.checkPoint.ProjetoIntegrador.domain.model.Dentista;
-import org.junit.After;
-import org.junit.Before;
+import com.checkPoint.ProjetoIntegrador.domain.service.DentistaService;
 import org.junit.FixMethodOrder;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -52,7 +52,7 @@ public class DentistaServiceTest {
         dentistaService.criarDentista(new Dentista("Lucas", "Ferreira", "CRO-567890"));
         dentistaService.criarDentista(new Dentista("Matheus", "Barreto", "CRO-678901"));
         List<Dentista>  listaDentista = dentistaService.buscarTodos();
-        Assertions.assertEquals(6, listaDentista.size());
+        Assertions.assertEquals(9, listaDentista.size());
     }
 
     @Test

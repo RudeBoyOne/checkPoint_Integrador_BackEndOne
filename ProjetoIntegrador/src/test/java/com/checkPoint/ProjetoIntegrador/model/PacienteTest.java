@@ -6,8 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDate;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -24,11 +22,10 @@ public class PacienteTest {
 
     @Test
     public void verificaEstanciacaoPaciente(){
-        assertEquals(1, paciente.getIdPaciente());
         assertEquals("Josivaldo", paciente.getNome());
         assertEquals("Souza", paciente.getSobrenome());
-        assertEquals(1, enderecoPaciente.getIdEndereco());
         assertEquals("68945644", paciente.getRg());
-        assertEquals(LocalDate.now(),paciente.getDataAlta() );
+        assertEquals("Rua Anne Frank", paciente.getEnderecoPaciente().getRua());
+        assertEquals("84567-211", paciente.getEnderecoPaciente().getCep());
     }
 }

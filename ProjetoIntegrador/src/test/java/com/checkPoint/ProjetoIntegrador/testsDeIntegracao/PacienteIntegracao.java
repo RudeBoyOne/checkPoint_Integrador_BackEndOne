@@ -5,9 +5,10 @@ import com.checkPoint.ProjetoIntegrador.api.dtos.inputs.PacienteDTOInput;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,6 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc(addFilters = false)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PacienteIntegracao {
 
     @Autowired
@@ -30,7 +32,7 @@ public class PacienteIntegracao {
 
 
     @Test
-    public void criarUmPacienteTest() throws Exception {
+    public void aCriarUmPacienteTest() throws Exception {
         EnderecoPacienteDTOInput enderecoPacienteDTOInput = new EnderecoPacienteDTOInput("Barão de Iguape",
                 985, "01507001", "São Paulo", "São Paulo");
         PacienteDTOInput pacienteDTOInput = new PacienteDTOInput("Josisvaldo",
@@ -52,7 +54,7 @@ public class PacienteIntegracao {
     }
 
     @Test
-    public void atualizaUmPacienteTest() throws Exception {
+    public void bAtualizaUmPacienteTest() throws Exception {
         EnderecoPacienteDTOInput enderecoPacienteDTOInput = new EnderecoPacienteDTOInput("Barão de Iguape",
                 985, "01507001", "São Paulo", "São Paulo");
         PacienteDTOInput pacienteDTOInput = new PacienteDTOInput("Mauricio",
@@ -64,7 +66,7 @@ public class PacienteIntegracao {
 
         String payloadJson = writer.writeValueAsString(pacienteDTOInput);
 
-        mockMvc.perform(MockMvcRequestBuilders.put("/pacientes/{idPaciente}", 2)
+        mockMvc.perform(MockMvcRequestBuilders.put("/pacientes/{idPaciente}", 1)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(payloadJson))
                 .andDo(print())
@@ -74,7 +76,7 @@ public class PacienteIntegracao {
     }
 
     @Test
-    public void buscarTodosPacientesTest() throws Exception {
+    public void cBuscarTodosPacientesTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/pacientes")
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
@@ -82,17 +84,21 @@ public class PacienteIntegracao {
     }
 
     @Test
-    public void buscarPacienteByIdTest() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/pacientes/{idPaciente}", 2))
+    public void dBuscarPacienteByIdTest() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/pacientes/{idPaciente}", 1))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
-    public void deletarPacienteByIdTest() throws Exception {
-        criarUmPacienteTest();
+    public void eDeletarPacienteByIdTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.delete("/pacientes/{idPaciente}", 1))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isNoContent());
+    }
+
+    @Test
+    public void fCriaPacienteParaConsulta() throws Exception {
+        this.aCriarUmPacienteTest();
     }
 }
