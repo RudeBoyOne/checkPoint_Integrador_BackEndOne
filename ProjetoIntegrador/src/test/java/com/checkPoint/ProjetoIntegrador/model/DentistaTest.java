@@ -18,7 +18,6 @@ public class DentistaTest {
 
     @Test
     public void verificaEstanciacaoDentista(){
-        assertEquals(1, dentista.getIdDentista());
         assertEquals("Lorivaldo", dentista.getNome());
         assertEquals("Silva", dentista.getSobrenome());
         assertEquals("D-SP: 3907", dentista.getMatriculaCadastro());

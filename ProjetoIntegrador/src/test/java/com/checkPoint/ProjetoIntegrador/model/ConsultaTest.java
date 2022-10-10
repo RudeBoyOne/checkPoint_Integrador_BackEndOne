@@ -31,7 +31,5 @@ public class ConsultaTest {
     public void verificaEstanciacaoConsulta(){
         assertEquals("Lorivaldo", consulta.getDentista().getNome());
         assertEquals("Josivaldo", consulta.getPaciente().getNome());
-        assertEquals(1, consulta.getIdConsulta());
-
     }
 }
