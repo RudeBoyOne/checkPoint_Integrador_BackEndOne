@@ -1,11 +1,13 @@
 package com.checkPoint.ProjetoIntegrador.service;
 
-import com.checkPoint.ProjetoIntegrador.domain.service.PacienteService;
-import com.checkPoint.ProjetoIntegrador.api.dtos.outputs.PacienteDTOOutput;
 import com.checkPoint.ProjetoIntegrador.domain.model.EnderecoPaciente;
 import com.checkPoint.ProjetoIntegrador.domain.model.Paciente;
+import com.checkPoint.ProjetoIntegrador.domain.service.PacienteService;
 import org.junit.FixMethodOrder;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

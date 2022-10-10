@@ -2,12 +2,9 @@ package com.checkPoint.ProjetoIntegrador.model;
 
 import com.checkPoint.ProjetoIntegrador.domain.model.EnderecoPaciente;
 import com.checkPoint.ProjetoIntegrador.domain.model.Paciente;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
