@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ConsultaIntegracao {
 
-    //Para executar este teste corretamente por favor executar a calsse SuiteDeTestes
+    //Para executar este teste corretamente por favor executar a classe SuiteDeTestes
     @Autowired
     private MockMvc mockMvc;
 
